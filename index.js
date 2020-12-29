@@ -1,13 +1,9 @@
 import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
 const app = express();
 
 // Dot Env + Database
-dotenv.config();
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, () =>
-  console.log("Succesfully connected to the database!")
-);
+import "./utils/Environment.js";
+import "./utils/Database.js";
 
 // Middleware
 app.use(express.json());
