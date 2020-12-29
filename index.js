@@ -3,7 +3,7 @@ import express from "express";
 import "./utils/Environment.js";
 import "./utils/Database.js";
 
-import { ErrorHandler, NotFound } from "./utils/ErrorHandler";
+import { ErrorHandler, NotFound } from "./utils/ErrorHandler.js";
 
 const app = express();
 
