@@ -27,6 +27,15 @@ const User = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user",
   },
+  basket: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+    },
+  ],
 });
 
 // Password Hash
