@@ -1,9 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 const app = express();
 
 // Dot Env + Database
-require("dotenv").config();
+dotenv.config();
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, () =>
   console.log("Succesfully connected to the database!")
 );
@@ -12,7 +13,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 app.use(express.json());
 
 // Routes
-app.use("/api/routername", require("./routes/routerpath"));
+// app.use("/api/routername", require("./routes/routerpath"));
 
 // Server
 const PORT = process.env.PORT || 8000;

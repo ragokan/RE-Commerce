@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
 import BadToken from "../models/BadToken.js";
 import User from "../models/User.js";
-import asyncHandler from "./asyncHandler.js";
+import Async from "./Async.js";
 
 function noPermissionError(res) {
   res.status(401);
   throw new Error("You don't have permission to do this action!");
 }
 
-const loginRequired = asyncHandler(async (req, res, next) => {
+const loginRequired = Async(async (req, res, next) => {
   const token = req.header("Authorization");
   if (!token) noPermissionError(res);
 
@@ -23,7 +23,7 @@ const loginRequired = asyncHandler(async (req, res, next) => {
   next();
 });
 
-const adminRequired = async(async (req, res, next) => {
+const adminRequired = Async(async (req, res, next) => {
   if (req.user && req.user.type === "admin") next();
   else noPermissionError(res);
 });
