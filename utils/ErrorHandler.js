@@ -1,15 +1,17 @@
+import ErrorObject from "./ErrorObject.js";
+
 const ErrorHandler = (err, req, res, next) => {
   console.log(err);
 
-  res.status(res.statusCode === 200 ? 500 : res.statusCode);
+  res.status(err.statusCode || 500);
   res.json({
     message: err.message || "Server Error",
+    translateCode: err.translateCode && err.translateCode,
   });
 };
 
 const NotFound = (req, res, next) => {
-  const NotFoundError = new Error(`The url you wanted to see '${req.originalUrl}' is not found`);
-  res.status(404);
+  const NotFoundError = new ErrorObject(`The url you wanted to see '${req.originalUrl}' is not found`, 404, "404");
   next(NotFoundError);
 };
 

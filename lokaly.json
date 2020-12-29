@@ -1,0 +1,15 @@
+{
+  "1": {
+    "en": "Server Error.",
+    "tr": "Sunucu Hatası."
+  },
+  "404": {
+    "en": "The thing you are looking for is not found.",
+    "tr": "Baktığınız şey bulunamadı."
+  },
+
+  "x": {
+    "en": "",
+    "tr": ""
+  }
+}
