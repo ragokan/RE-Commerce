@@ -7,6 +7,18 @@
     "en": "The thing you are looking for is not found.",
     "tr": "Baktığınız şey bulunamadı."
   },
+  "101": {
+    "en": "Invalid Credentials!",
+    "tr": "Giriş Bilgileri Geçersiz!"
+  },
+  "102": {
+    "en": "You don't have permission to do this action!",
+    "tr": "Bu işlemi yapmak için yetkiniz bulunmamakta!"
+  },
+  "103": {
+    "en": "User already logged out, to do this action log in!",
+    "tr": "Üye zaten çıkış yapmış, bu işlemi yapmak için giriş yapınız!"
+  },
 
   "x": {
     "en": "",
