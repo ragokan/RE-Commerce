@@ -1,14 +1,9 @@
 const ErrorHandler = (err, req, res, next) => {
-  let error = { ...err };
-  let translateCode = 1;
-
-  console.log(error);
+  console.log(err);
 
   res.status(res.statusCode === 200 ? 500 : res.statusCode);
   res.json({
     message: err.message || "Server Error",
-    translateCode,
-    stack: err.stack,
   });
 };
 
@@ -19,9 +14,3 @@ const NotFound = (req, res, next) => {
 };
 
 export { ErrorHandler, NotFound };
-
-/* 
------------- TRANSLATE CODES ------------
-1 : Server Error
------------- TRANSLATE CODES ------------
-*/
