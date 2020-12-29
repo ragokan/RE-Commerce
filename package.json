@@ -2,12 +2,17 @@
   "name": "recommerce",
   "version": "1.0.0",
   "description": "An e-commerce app that created by ragokan.",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
   "main": "index.js",
   "repository": "https://github.com/ragokan/recommerce",
   "author": "ragokan",
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "eslint": "^7.16.0",
     "nodemon": "^2.0.6"
   },
   "dependencies": {
@@ -18,5 +23,6 @@
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.9"
-  }
+  },
+  "type": "module"
 }
