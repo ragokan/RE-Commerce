@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { BasketSchema, ProductType } from "./UserUtilities.js";
 
 const User = new mongoose.Schema({
   email: {
@@ -27,20 +28,8 @@ const User = new mongoose.Schema({
     enum: ["user", "seller", "admin"],
     default: "user",
   },
-  basket: [
-    {
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
-      },
-      quantity: {
-        type: Number,
-        required: true,
-        default: 1,
-      },
-    },
-  ],
+  basket: [BasketSchema],
+  purchasedProducts: [ProductType],
 });
 
 // Password Hash
