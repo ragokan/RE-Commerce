@@ -17,7 +17,7 @@ export const Register = Async(async (req, res, next) => {
   const user = new User({ email, password, fullname });
   await user.save();
   const token = user.getToken();
-  res.status(201).json({ token, message: "User created successfully!" });
+  res.status(201).json(token);
 });
 
 // Post /auth/login

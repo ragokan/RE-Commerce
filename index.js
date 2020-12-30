@@ -10,8 +10,10 @@ app.use(express.json());
 // Routes
 import AuthRoutes from "./routes/AuthRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
+import SellerRoutes from "./routes/SellerRoutes.js";
 app.use("/api/auth", AuthRoutes);
 app.use("/api/user", UserRoutes);
+app.use("/api/seller", SellerRoutes);
 
 // Middleware
 app.use(NotFound);

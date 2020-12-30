@@ -18,13 +18,13 @@ const LoginRequired = Async(async (req, res, next) => {
   next();
 });
 
-const AdminRequired = Async(async (req, res, next) => {
-  if (req.user && req.user.type === "admin") next();
+const SellerRequired = Async(async (req, res, next) => {
+  if ((req.user && req.user.type === "seller") || req.user.type === "admin") next();
   else return noPermissionError(next);
 });
 
-const SellerRequired = Async(async (req, res, next) => {
-  if (req.user && req.user.type === "seller") next();
+const AdminRequired = Async(async (req, res, next) => {
+  if (req.user && req.user.type === "admin") next();
   else return noPermissionError(next);
 });
 
