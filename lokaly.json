@@ -32,6 +32,14 @@
     "en": "No seller found with this id!",
     "tr": "Bu id ile hiçbir satıcı bulunamadı!"
   },
+  "204": {
+    "en": "The basket is already empty!",
+    "tr": "Sepet zaten boş!"
+  },
+  "205": {
+    "en": "The basket doesn't have that item!",
+    "tr": "Ürün zaten sepette değil!"
+  },
 
   "x": {
     "en": "",
