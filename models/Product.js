@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { UserType } from "./Utilities.js";
+import { UserType, ProductReview } from "./Utilities.js";
 
 const ProductSchema = mongoose.Schema(
   {
@@ -33,6 +33,7 @@ const ProductSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
+    reviews: [ProductReview],
     seller: UserType,
   },
   { timestamps: true }

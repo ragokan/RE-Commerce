@@ -21,4 +21,15 @@ const BasketSchema = new mongoose.Schema({
   },
 });
 
-export { ProductType, BasketSchema, UserType };
+const ProductReview = new mongoose.Schema(
+  {
+    user: UserType,
+    rating: { type: Number, required: true },
+    text: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export { ProductType, BasketSchema, UserType, ProductReview };
