@@ -1092,6 +1092,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
+joi-objectid@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/joi-objectid/-/joi-objectid-3.0.1.tgz#63ace7860f8e1a993a28d40c40ffd8eff01a3668"
+  integrity sha512-V/3hbTlGpvJ03Me6DJbdBI08hBTasFOmipsauOsxOSnsF1blxV537WTl1zPwbfcKle4AK0Ma4OPnzMH4LlvTpQ==
+
 joi@^17.3.0:
   version "17.3.0"
   resolved "https://registry.yarnpkg.com/joi/-/joi-17.3.0.tgz#f1be4a6ce29bc1716665819ac361dfa139fff5d2"
