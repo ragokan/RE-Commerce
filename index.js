@@ -1,4 +1,5 @@
 import express from "express";
+import formData from "express-form-data";
 // Dot Env + Database
 import "./utils/Environment.js";
 import "./utils/Database.js";
@@ -6,6 +7,7 @@ import { ErrorHandler, NotFound } from "./utils/ErrorHandler.js";
 
 const app = express();
 app.use(express.json());
+app.use(formData.parse());
 
 // Routes
 import AuthRoutes from "./routes/AuthRoutes.js";
