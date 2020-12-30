@@ -11,9 +11,11 @@ app.use(express.json());
 import AuthRoutes from "./routes/AuthRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 import SellerRoutes from "./routes/SellerRoutes.js";
+import ProductRoutes from "./routes/ProductRoutes.js";
 app.use("/api/auth", AuthRoutes);
 app.use("/api/user", UserRoutes);
 app.use("/api/seller", SellerRoutes);
+app.use("/api/product", ProductRoutes);
 
 // Middleware
 app.use(NotFound);
