@@ -58,3 +58,10 @@ export const RemoveProductToBasket = Async(async (req, res, next) => {
   await user.save();
   res.status(200).json(user.basket);
 });
+
+// Post /product/clear
+export const ClearBasket = Async(async (req, res, next) => {
+  let user = await User.findByIdAndUpdate(req.user._id, { basket: [] }, { new: true });
+
+  res.status(200).json(user);
+});
