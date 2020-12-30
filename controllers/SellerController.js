@@ -50,3 +50,19 @@ export const UpdateProduct = Async(async (req, res, next) => {
 
   res.status(200).json(product);
 });
+
+// Delete /seller/products/:id
+export const DeleteProduct = Async(async (req, res, next) => {
+  let productValidate = await Product.findById(req.params.id);
+  if (!productValidate)
+    return next(new ErrorObject("The product you are looking for is not found!", 404, 201));
+
+  if (String(productValidate.seller) !== String(req.user._id))
+    return next(
+      new ErrorObject("You can't update or delete products that doesn't belongs to you!", 401, 202)
+    );
+
+  await Product.findByIdAndRemove(req.params.id);
+
+  res.status(200).json("Product is deleted successfully!");
+});
