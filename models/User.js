@@ -24,7 +24,7 @@ const User = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["user", "admin"],
+    enum: ["user", "seller", "admin"],
     default: "user",
   },
   basket: [

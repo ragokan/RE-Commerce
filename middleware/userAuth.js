@@ -23,4 +23,9 @@ const AdminRequired = Async(async (req, res, next) => {
   else return noPermissionError(next);
 });
 
-export { LoginRequired, AdminRequired };
+const SellerRequired = Async(async (req, res, next) => {
+  if (req.user && req.user.type === "seller") next();
+  else return noPermissionError(next);
+});
+
+export { LoginRequired, SellerRequired, AdminRequired };
