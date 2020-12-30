@@ -1,36 +1,39 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { BasketSchema, ProductType } from "./UserUtilities.js";
+import { BasketSchema, ProductType } from "./Utilities.js";
 
-const User = new mongoose.Schema({
-  email: {
-    type: String,
-    required: true,
-    lowercase: true,
+const User = new mongoose.Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      lowercase: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    fullname: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    logintoken: {
+      required: false,
+      type: String,
+      default: "null",
+    },
+    type: {
+      type: String,
+      enum: ["user", "seller", "admin"],
+      default: "user",
+    },
+    basket: [BasketSchema],
+    purchasedProducts: [ProductType],
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  fullname: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  logintoken: {
-    required: false,
-    type: String,
-    default: "null",
-  },
-  type: {
-    type: String,
-    enum: ["user", "seller", "admin"],
-    default: "user",
-  },
-  basket: [BasketSchema],
-  purchasedProducts: [ProductType],
-});
+  { timestamps: true }
+);
 
 // Password Hash
 User.pre("save", async function (next) {

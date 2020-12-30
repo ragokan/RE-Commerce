@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { UserType } from "./Utilities.js";
 
 const ProductSchema = mongoose.Schema(
   {
@@ -32,11 +33,7 @@ const ProductSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    seller: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    seller: UserType,
   },
   { timestamps: true }
 );

@@ -6,6 +6,12 @@ const ProductType = {
   required: true,
 };
 
+const UserType = {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User",
+  required: true,
+};
+
 const BasketSchema = new mongoose.Schema({
   product: ProductType,
   quantity: {
@@ -15,4 +21,4 @@ const BasketSchema = new mongoose.Schema({
   },
 });
 
-export { ProductType, BasketSchema };
+export { ProductType, BasketSchema, UserType };
