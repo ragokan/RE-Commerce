@@ -28,6 +28,10 @@
     "en": "You can't update or delete products that doesn't belongs to you!",
     "tr": "Size ait olmayan ürünleri güncelleyemez veya silemezsiniz!"
   },
+  "203": {
+    "en": "No seller found with this id!",
+    "tr": "Bu id ile hiçbir satıcı bulunamadı!"
+  },
 
   "x": {
     "en": "",

@@ -1,4 +1,5 @@
 import Product from "../models/Product.js";
+import User from "../models/User.js";
 import Async from "../middleware/Async.js";
 import ProductValidation from "../validation/ProductValidation.js";
 import ErrorObject from "../utils/ErrorObject.js";
@@ -12,6 +13,16 @@ export const GetProducts = Async(async (req, res, next) => {
     products = await Product.find({ seller: req.user._id });
   }
   res.status(200).json(products);
+});
+
+// Get /seller/productsOf/id
+export const GetSellersProducts = Async(async (req, res, next) => {
+  let seller = await User.findById(req.params.id).select(["-password", "-basket", "-logintoken"]);
+
+  if (!seller) return next(new ErrorObject("No seller found with this id!", 404, 203));
+
+  let products = await Product.find({ seller: req.params.id });
+  res.status(200).json({ products, seller });
 });
 
 // Post /seller/products
