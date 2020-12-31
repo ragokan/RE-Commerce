@@ -1,5 +1,5 @@
-let userLinks = {};
+let userLinks = [];
 
-let guestLinks = {};
+let guestLinks = [];
 
 export { userLinks, guestLinks };
