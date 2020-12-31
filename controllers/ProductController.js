@@ -25,7 +25,7 @@ export const GetUserBasket = Async(async (req, res, next) => {
 // Post /product/add
 export const AddProductToBasket = Async(async (req, res, next) => {
   const { error } = BasketValidation(req.body);
-  if (error) return next(new ErrorObject(error.details[0].message, 400));
+  if (error) return next(new ErrorObject("Please provide a correct product id to add!", 400));
   let { product } = req.body;
 
   let user = await User.findById(req.user._id);
