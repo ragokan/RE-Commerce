@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "An e-commerce app that created by ragokan.",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node backend/index --prefix backend",
+    "dev": "nodemon index --prefix backend",
+    "heroku-postbuild": "yarn install --prefix client && yarn build --prefix frontend",
+    "frontend": "yarn start --prefix frontend",
+    "both": "concurrently \"yarn dev\" \"yarn frontend\""
   },
   "main": "index.js",
   "repository": "https://github.com/ragokan/recommerce",
@@ -12,6 +15,7 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "concurrently": "^5.3.0",
     "eslint": "^7.16.0",
     "nodemon": "^2.0.6"
   },
