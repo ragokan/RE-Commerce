@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node backend/index --prefix backend",
     "dev": "nodemon index --prefix backend",
-    "heroku-postbuild": "yarn install --prefix client && yarn build --prefix frontend",
-    "frontend": "yarn start --prefix frontend",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix frontend",
+    "frontend": "npm run start --prefix frontend",
     "both": "concurrently \"yarn dev\" \"yarn frontend\""
   },
   "main": "index.js",
