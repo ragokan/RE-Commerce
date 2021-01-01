@@ -1,10 +1,15 @@
-import React from "react";
-import { Layout, Menu } from "antd";
+import React, { useState } from "react";
+import { Button, Drawer, Layout } from "antd";
 import basket from "../../../resources/basket.png";
 import { Link } from "react-router-dom";
+import NavMenu from "./NavMenu";
 const { Header } = Layout;
 
 const Navbar = () => {
+  const [visible, setVisible] = useState(false);
+  const showDrawer = () => setVisible(true);
+  const onClose = () => setVisible(false);
+
   return (
     <>
       <Header>
@@ -14,13 +19,23 @@ const Navbar = () => {
               <img src={basket} alt="basketImg" className="basketImg" />
               <span className="reCommerceText">R/E-Commerce</span>
             </Link>
-            <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
-              <Menu.Item key="1">Home</Menu.Item>
-              <Menu.Item key="2">Login</Menu.Item>
-              <Menu.Item key="3">Register</Menu.Item>
-              <Menu.Item key="4">nav 4</Menu.Item>
-              <Menu.Item key="5">nav 5 nav 6</Menu.Item>
-            </Menu>
+            <div className="mobileHidden">
+              <NavMenu mode={"horizontal"} />
+            </div>
+            <div className="mobileVisible">
+              <Button type="primary" onClick={showDrawer}>
+                <i className="fas fa-bars" />
+              </Button>
+              <Drawer
+                title="R/E-Commerce Menu"
+                placement="right"
+                onClose={onClose}
+                visible={visible}
+                getContainer={false}
+              >
+                <NavMenu mode={"vertical"} />
+              </Drawer>
+            </div>
           </div>
         </div>
       </Header>
