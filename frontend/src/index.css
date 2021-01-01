@@ -46,3 +46,22 @@ header {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.fa-shopping-cart {
+  font-size: 20px;
+}
+
+.fa-shopping-cart:hover {
+  font-size: 20px;
+  color: #1890ff;
+  transition: color 0.1s;
+}
+
+.ant-badge-count {
+  background: #1890ff !important;
+  font-size: 100px !important;
+}
+
+.ant-badge-count p {
+  font-size: 13px;
+}

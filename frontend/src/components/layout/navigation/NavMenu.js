@@ -1,6 +1,6 @@
-import { Menu } from "antd";
+import { Badge, Menu } from "antd";
 import lokaly from "lokaly";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { guestLinks, userLinks } from "./Links";
 import { connect } from "react-redux";
@@ -10,6 +10,13 @@ const NavMenu = ({ user, mode, LogoutAction }) => {
   const {
     location: { pathname },
   } = useHistory();
+  const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    user &&
+      user.basket &&
+      setQuantity(user.basket.reduce((total, current) => total + current.quantity, 0));
+  }, [user]);
 
   return (
     <>
@@ -23,6 +30,14 @@ const NavMenu = ({ user, mode, LogoutAction }) => {
           <Menu.Item key={"logout"} className="linkName">
             <Link to="/" onClick={() => LogoutAction()}>
               {lokaly("logout")}
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item key={"basket"} className="linkName">
+            <Link to="/basket">
+              <Badge count={quantity} className="badge">
+                <i className="fas fa-shopping-cart" />
+              </Badge>
             </Link>
           </Menu.Item>
         </Menu>
