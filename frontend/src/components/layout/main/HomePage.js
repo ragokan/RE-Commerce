@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import lokaly from "lokaly";
-import { Col, Pagination, Row } from "antd";
+import { Col, Divider, Pagination, Row } from "antd";
 import { Card } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 const { Meta } = Card;
@@ -18,7 +18,7 @@ const HomePage = () => {
   const [currentItems, setCurrentItems] = useState([]);
   useEffect(
     () => {
-      setCurrentItems(paginate(items, 9, currentPage));
+      setCurrentItems(paginate(items, 12, currentPage));
     },
     /*eslint-disable*/ [currentPage]
   );
@@ -31,26 +31,28 @@ const HomePage = () => {
             <h2>{lokaly("popular")}</h2>
           </div>
 
-          <Row gutter={16}>
-            {currentItems.map((item, index) => (
-              <Col className="gutter-row" span={6} key={index} xs={24} sm={12} md={12} lg={8}>
-                <Card
-                  style={{ width: 300 }}
-                  cover={
-                    <img
-                      alt="example"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                  }
-                  actions={[<ShoppingCartOutlined title="Add" />]}
-                >
-                  <Meta title={item} description="This is the description" />
-                </Card>
-              </Col>
-            ))}
-          </Row>
+          <div className="productContainer">
+            <Row gutter={16} justify="center" className="productRows">
+              {currentItems.map((item, index) => (
+                <Col className="gutter-row" span={6} key={index} xs={24} sm={24} md={12} lg={8}>
+                  <Card
+                    style={{ width: 300 }}
+                    cover={
+                      <img
+                        alt="example"
+                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                      />
+                    }
+                    actions={[<ShoppingCartOutlined title="Add" />]}
+                  >
+                    <Meta title={item} description="This is the description" />
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </div>
           <br />
-          <hr />
+          <Divider orientation="left"></Divider>
           <Pagination
             defaultCurrent={currentPage}
             total={items.length}

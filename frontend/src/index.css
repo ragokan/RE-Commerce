@@ -18,3 +18,7 @@ header {
 .pagination {
   text-align: center;
 }
+
+.gutter-row {
+  margin-bottom: 30px;
+}
