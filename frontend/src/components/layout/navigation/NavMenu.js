@@ -3,12 +3,13 @@ import lokaly from "lokaly";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { guestLinks, userLinks } from "./Links";
+import { connect } from "react-redux";
 
-const NavMenu = ({ mode }) => {
+const NavMenu = ({ user, mode }) => {
   const {
     location: { pathname },
   } = useHistory();
-  let user = false;
+
   return (
     <>
       {user ? (
@@ -32,4 +33,8 @@ const NavMenu = ({ mode }) => {
   );
 };
 
-export default NavMenu;
+const mapStateToProps = (state) => ({ user: state.user.user });
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavMenu);

@@ -58,6 +58,11 @@
     "tr": "En Popüper Ürünler"
   },
 
+  "account": {
+    "en": "account",
+    "tr": "hesap"
+  },
+
   "footer": {
     "en": "R/E-Commerce by Okan YILDIRIM (ragokan) - Uses Ant Design",
     "tr": "Okan YILDIRIM (ragokan) tarafından yapılan R/E-Commerce - Ant Design Kullanır"

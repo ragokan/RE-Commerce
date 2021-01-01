@@ -1,8 +1,8 @@
+import { connect } from "react-redux";
 import React from "react";
 import { Link, Route } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  let user = false;
+const PrivateRoute = ({ user, component: Component, ...rest }) => {
   return (
     <>
       <Route
@@ -23,4 +23,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export default PrivateRoute;
+const mapStateToProps = (state) => ({
+  user: state.user.user,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);
