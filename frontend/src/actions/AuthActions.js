@@ -27,3 +27,9 @@ export const LoginAction = (account) => async (dispatch) => {
     payload: data,
   });
 };
+
+export const LogoutAction = () => async (dispatch) => {
+  await api.post(routes.logoutRoute);
+  localStorage.removeItem("authToken");
+  dispatch({ type: "LOGOUT_USER" });
+};

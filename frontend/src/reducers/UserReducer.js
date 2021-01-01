@@ -10,6 +10,9 @@ export default function reducer(state = initialState, { type, payload }) {
     case "LOGIN_ERROR":
       return { ...state, user: null };
 
+    case "LOGOUT_USER":
+      return { ...state, user: null };
+
     default:
       return state;
   }

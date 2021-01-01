@@ -4,8 +4,9 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { guestLinks, userLinks } from "./Links";
 import { connect } from "react-redux";
+import { LogoutAction } from "../../../actions/AuthActions";
 
-const NavMenu = ({ user, mode }) => {
+const NavMenu = ({ user, mode, LogoutAction }) => {
   const {
     location: { pathname },
   } = useHistory();
@@ -19,6 +20,11 @@ const NavMenu = ({ user, mode }) => {
               <Link to={link.path}>{lokaly(link.name)}</Link>
             </Menu.Item>
           ))}
+          <Menu.Item key={"logout"} className="linkName">
+            <Link to="/" onClick={() => LogoutAction()}>
+              {lokaly("logout")}
+            </Link>
+          </Menu.Item>
         </Menu>
       ) : (
         <Menu mode={mode} defaultSelectedKeys={[pathname]}>
@@ -35,6 +41,6 @@ const NavMenu = ({ user, mode }) => {
 
 const mapStateToProps = (state) => ({ user: state.user.user });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { LogoutAction };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavMenu);

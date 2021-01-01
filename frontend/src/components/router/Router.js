@@ -2,19 +2,23 @@ import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import RouterContent from "./RouterContent";
 import Routes from "./Routes";
+import LoadingComponent from "../utils/LoadingComponent";
+import { connect } from "react-redux";
 
-const RouterComponent = () => {
+const RouterComponent = ({ loading }) => {
   return (
     <>
       <Router>
         <Switch>
-          <RouterContent>
-            <Routes />
-          </RouterContent>
+          <RouterContent>{loading ? <LoadingComponent /> : <Routes />}</RouterContent>
         </Switch>
       </Router>
     </>
   );
 };
 
-export default RouterComponent;
+const mapStateToProps = (state) => ({ loading: state.loading });
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RouterComponent);

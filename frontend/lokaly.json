@@ -57,10 +57,13 @@
     "en": "Most Popular Products",
     "tr": "En Popüper Ürünler"
   },
-
   "account": {
     "en": "account",
     "tr": "hesap"
+  },
+  "logout": {
+    "en": "Logout",
+    "tr": "Çıkış Yap"
   },
 
   "footer": {
