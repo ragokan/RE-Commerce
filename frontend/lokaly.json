@@ -11,6 +11,27 @@
     "en": "Register",
     "tr": "Kayıt Ol"
   },
+  "emailRule": {
+    "en": "Please input your E-mail!",
+    "tr": "Lütfen E-mailinizi girin."
+  },
+  "passwordRule": {
+    "en": "Please input your Password!",
+    "tr": "Lütfen şifrenizi girin."
+  },
+  "password": {
+    "en": "Password!",
+    "tr": "Şifre"
+  },
+  "or": {
+    "en": "Or",
+    "tr": "Veya"
+  },
+
+  "registerNow": {
+    "en": "register now!",
+    "tr": "şimdi kayıt olun!"
+  },
 
   "footer": {
     "en": "R/E-Commerce by Okan YILDIRIM (ragokan) - Uses Ant Design",

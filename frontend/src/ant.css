@@ -161,8 +161,9 @@ p {
 }
 
 .ant-form {
-  max-width: 640px;
+  max-width: 500px;
   margin: auto;
+  text-align: center;
 }
 
 .titleHolder {
@@ -186,4 +187,21 @@ p {
 .titleHolder h2 {
   font-size: 28px;
   margin: 0;
+}
+
+#components-form-demo-normal-login .login-form {
+  max-width: 200px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .ant-col-rtl .login-form-forgot {
+  float: left;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+
+.login-form {
+  margin: auto !important;
 }
