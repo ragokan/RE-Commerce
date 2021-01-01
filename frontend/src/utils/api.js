@@ -23,8 +23,9 @@ api.interceptors.response.use(
   },
   async (error) => {
     store.dispatch(SetLoading(false));
+    let errorMessage = lokaly(String(`${error.response.data.translateCode}`));
     if (error.response) {
-      store.dispatch(AddErrorAction(error.response.data.translateCode, "error"));
+      store.dispatch(AddErrorAction(errorMessage, "error"));
     }
     throw new axios.Cancel("Error happened!");
   }

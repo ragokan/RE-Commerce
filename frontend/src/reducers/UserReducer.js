@@ -1,11 +1,10 @@
 const initialState = {
   user: {},
-  token: null,
 };
 
 export default function reducer(state = initialState, { type, payload }) {
   switch (type) {
-    case "GET_USER":
+    case "FETCH_USER":
       return { ...state, user: payload };
 
     default:
