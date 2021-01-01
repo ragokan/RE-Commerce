@@ -16,7 +16,9 @@ const RouterContent = ({ children }) => {
             {children}
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>{lokaly("footer")}</Footer>
+        <Footer style={{ textAlign: "center" }} className="footer">
+          {lokaly("footer")}
+        </Footer>
       </Layout>
     </>
   );

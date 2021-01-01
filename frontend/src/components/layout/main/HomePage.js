@@ -55,7 +55,7 @@ const HomePage = () => {
           <Divider orientation="left"></Divider>
           <Pagination
             defaultCurrent={currentPage}
-            total={items.length}
+            total={(items.length / 12) * 10}
             showSizeChanger={false}
             current={currentPage}
             onChange={(page) => setCurrentPage(page)}

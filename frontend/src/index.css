@@ -22,3 +22,13 @@ header {
 .gutter-row {
   margin-bottom: 30px;
 }
+
+.footer {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+}
+
+.mainLayout {
+  min-height: 100vh !important;
+}

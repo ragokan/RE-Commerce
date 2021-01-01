@@ -26,14 +26,14 @@ const Register = () => {
                 rules={[{ required: true, message: lokaly("nameRule") }]}
                 style={{ display: "inline-block", width: "calc(50% - 8px)" }}
               >
-                <Input placeholder={lokaly("name")} />
+                <Input placeholder={lokaly("name")} type="text" />
               </Form.Item>
               <Form.Item
                 name="surname"
                 rules={[{ required: true, message: lokaly("surnameRule") }]}
                 style={{ display: "inline-block", width: "calc(50% - 8px)", margin: "0 8px" }}
               >
-                <Input placeholder={lokaly("surname")} />
+                <Input placeholder={lokaly("surname")} type="text" />
               </Form.Item>
             </Form.Item>
 
@@ -41,6 +41,7 @@ const Register = () => {
               <Input
                 prefix={<UserOutlined className="site-form-item-icon" />}
                 placeholder="Email"
+                type="email"
               />
             </Form.Item>
             <Form.Item
