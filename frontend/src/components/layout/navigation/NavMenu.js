@@ -1,4 +1,5 @@
 import { Menu } from "antd";
+import lokaly from "lokaly";
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { guestLinks, userLinks } from "./Links";
@@ -14,7 +15,7 @@ const NavMenu = ({ mode }) => {
         <Menu mode={mode} defaultSelectedKeys={[pathname]}>
           {userLinks.map((link) => (
             <Menu.Item key={link.path} className="linkName">
-              <Link to={link.path}>{link.name}</Link>
+              <Link to={link.path}>{lokaly(link.name)}</Link>
             </Menu.Item>
           ))}
         </Menu>
@@ -22,7 +23,7 @@ const NavMenu = ({ mode }) => {
         <Menu mode={mode} defaultSelectedKeys={[pathname]}>
           {guestLinks.map((link) => (
             <Menu.Item key={link.path} className="linkName">
-              <Link to={link.path}>{link.name}</Link>
+              <Link to={link.path}>{lokaly(link.name)}</Link>
             </Menu.Item>
           ))}
         </Menu>

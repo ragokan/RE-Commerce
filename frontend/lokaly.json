@@ -1,4 +1,22 @@
 {
+  "home": {
+    "en": "Home Page",
+    "tr": "Ana Sayfa"
+  },
+  "login": {
+    "en": "Login",
+    "tr": "Giriş Yap"
+  },
+  "register": {
+    "en": "Register",
+    "tr": "Kayıt Ol"
+  },
+
+  "footer": {
+    "en": "R/E-Commerce by Okan YILDIRIM (ragokan) - Uses Ant Design",
+    "tr": "Okan YILDIRIM (ragokan) tarafından yapılan R/E-Commerce - Ant Design Kullanır"
+  },
+
   "1": {
     "en": "Server Error.",
     "tr": "Sunucu Hatası."

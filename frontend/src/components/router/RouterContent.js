@@ -1,23 +1,18 @@
 import React from "react";
 import Navbar from "../layout/navigation/Navbar";
 import { Layout } from "antd";
+import lokaly from "lokaly";
 const { Content, Footer } = Layout;
 
-const RouterContent = () => {
+const RouterContent = ({ children }) => {
   return (
     <>
       <Layout className="mainLayout">
         <Navbar />
         <Content style={{ padding: "0 50px" }}>
-          <div className="site-layout-content">
-            {/* CONTENT HERE */}
-            {/* CONTENT HERE */}
-            {/* CONTENT HERE */}
-          </div>
+          <div className="site-layout-content">{children}</div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          R/E-Commerce by Okan YILDIRIM (ragokan) - Uses Ant Design
-        </Footer>
+        <Footer style={{ textAlign: "center" }}>{lokaly("footer")}</Footer>
       </Layout>
     </>
   );

@@ -1,14 +1,16 @@
 import React from "react";
-import PrivateRoute from "./PrivateRoute";
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import RouterContent from "./RouterContent";
+import Routes from "./Routes";
 
 const RouterComponent = () => {
   return (
     <>
       <Router>
         <Switch>
-          <RouterContent></RouterContent>
+          <RouterContent>
+            <Routes />
+          </RouterContent>
         </Switch>
       </Router>
     </>
