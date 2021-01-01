@@ -3,9 +3,11 @@ import lokaly from "lokaly";
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { LoginAction } from "../../actions/AuthActions";
 
-const Login = () => {
-  const onFinish = ({ email, password }) => {};
+const Login = ({ LoginAction }) => {
+  const onFinish = ({ email, password }) => LoginAction({ email, password });
   return (
     <>
       <div className="block">
@@ -50,4 +52,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = { LoginAction };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,1 +1,1 @@
-export const smt = "/smt";
+export const loginRoute = "/auth/login";

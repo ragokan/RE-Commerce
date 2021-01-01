@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import formData from "express-form-data";
 // Dot Env + Database
 import "./utils/Environment.js";
@@ -6,6 +7,7 @@ import "./utils/Database.js";
 import { ErrorHandler, NotFound } from "./utils/ErrorHandler.js";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(formData.parse());
 

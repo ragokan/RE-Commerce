@@ -32,3 +32,10 @@ header {
 .mainLayout {
   min-height: 100vh !important;
 }
+
+.ant-form-item-control-input {
+  max-width: 300px !important;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
