@@ -10,7 +10,10 @@ const RouterComponent = ({ loading }) => {
     <>
       <Router>
         <Switch>
-          <RouterContent>{loading ? <LoadingComponent /> : <Routes />}</RouterContent>
+          <RouterContent>
+            {loading && <LoadingComponent />}
+            <Routes />
+          </RouterContent>
         </Switch>
       </Router>
     </>
