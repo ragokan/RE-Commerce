@@ -16,6 +16,7 @@ const ErrorObject = ({ errors, dispatch }) => {
           closable
           onClose={() => onClose(error.id)}
           showIcon
+          className="alertObject"
         />
       ))}
     </>
