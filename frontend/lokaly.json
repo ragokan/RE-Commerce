@@ -53,6 +53,11 @@
     "tr": "Lütfen soyadınızı girin!"
   },
 
+  "popular": {
+    "en": "Most Popular Products",
+    "tr": "En Popüper Ürünler"
+  },
+
   "footer": {
     "en": "R/E-Commerce by Okan YILDIRIM (ragokan) - Uses Ant Design",
     "tr": "Okan YILDIRIM (ragokan) tarafından yapılan R/E-Commerce - Ant Design Kullanır"
