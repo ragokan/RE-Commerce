@@ -32,6 +32,26 @@
     "en": "register now!",
     "tr": "şimdi kayıt olun!"
   },
+  "loginNow": {
+    "en": "login now!",
+    "tr": "giriş yapın!"
+  },
+  "name": {
+    "en": "Name",
+    "tr": "Adınız"
+  },
+  "surname": {
+    "en": "Surname",
+    "tr": "Soyadınız"
+  },
+  "nameRule": {
+    "en": "Please enter your name!",
+    "tr": "Lütfen adınızı girin!"
+  },
+  "surnameRule": {
+    "en": "Please enter your surname!",
+    "tr": "Lütfen soyadınızı girin!"
+  },
 
   "footer": {
     "en": "R/E-Commerce by Okan YILDIRIM (ragokan) - Uses Ant Design",
