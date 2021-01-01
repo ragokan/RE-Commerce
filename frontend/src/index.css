@@ -6,3 +6,7 @@
 header {
   background: #ffffff !important;
 }
+
+.linkName {
+  text-transform: capitalize;
+}
