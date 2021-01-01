@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className="header">
             <Link to="/" className="logo">
               <img src={basket} alt="basketImg" className="basketImg" />
-              <span className="reCommerceText">R/E-Commerce</span>
+              <span className="reCommerceText"> R/E-Commerce</span>
             </Link>
             <div className="mobileHidden">
               <NavMenu mode={"horizontal"} />
