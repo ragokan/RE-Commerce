@@ -205,3 +205,11 @@ p {
 .login-form {
   margin: auto !important;
 }
+
+.ant-alert-success {
+  background-color: #3cac5c7f !important;
+}
+
+.ant-alert-error {
+  background-color: #fa32326c !important;
+}
