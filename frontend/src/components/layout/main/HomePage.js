@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import lokaly from "lokaly";
 import { Divider, Pagination, Row } from "antd";
-import ProductObject from "../products/ProductObject";
+import ProductObject from "../../products/ProductObject";
 import paginate from "../../../utils/PaginateFunction";
 import { connect } from "react-redux";
 
