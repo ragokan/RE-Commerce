@@ -43,6 +43,11 @@ export const AddProductToBasket = Async(async (req, res, next) => {
   } else await user.basket.push({ product, quantity: 1 });
 
   await user.save();
+  await User.populate(user, {
+    path: "basket",
+    populate: { path: "product" },
+  });
+
   res.status(200).json(user.basket);
 });
 
@@ -62,6 +67,10 @@ export const RemoveProductToBasket = Async(async (req, res, next) => {
   } else return next(new ErrorObject("The basket is already empty!", 400, 204));
 
   await user.save();
+  await User.populate(user, {
+    path: "basket",
+    populate: { path: "product" },
+  });
   res.status(200).json(user.basket);
 });
 

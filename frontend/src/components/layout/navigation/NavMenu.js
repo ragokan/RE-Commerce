@@ -1,4 +1,4 @@
-import { Badge, Menu } from "antd";
+import { Badge, Menu, Popover } from "antd";
 import lokaly from "lokaly";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
@@ -34,11 +34,13 @@ const NavMenu = ({ user, mode, LogoutAction }) => {
           </Menu.Item>
 
           <Menu.Item key={"basket"} className="linkName">
-            <Link to="/basket">
-              <Badge count={quantity} className="badge">
-                <i className="fas fa-shopping-cart" />
-              </Badge>
-            </Link>
+            <Popover title="Basket" placement="bottom">
+              <Link to="/basket">
+                <Badge count={quantity} className="badge">
+                  <i className="fas fa-shopping-cart" />
+                </Badge>
+              </Link>
+            </Popover>
           </Menu.Item>
         </Menu>
       ) : (

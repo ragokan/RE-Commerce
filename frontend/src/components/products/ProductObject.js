@@ -16,7 +16,7 @@ const ProductObject = ({ product, user, AddProductAction, RemoveProductAction })
     } else setBasket(user.basket);
   }, [user]);
   useEffect(() => {
-    let index = basket && basket.findIndex((item) => item.product === product._id);
+    let index = basket && basket.findIndex((item) => item.product._id === product._id);
     setItemExists(index === -1 ? false : true);
     setItemCount(index === -1 ? 0 : basket[index].quantity);
   }, [basket, product]);

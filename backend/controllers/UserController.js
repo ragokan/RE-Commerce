@@ -4,6 +4,11 @@ import ErrorObject from "../utils/ErrorObject.js";
 
 // Get /user/me
 export const GetUser = Async(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select(["-password", "-logintoken"]);
+  const user = await User.findById(req.user.id)
+    .select(["-password", "-logintoken"])
+    .populate({
+      path: "basket",
+      populate: { path: "product" },
+    });
   res.status(200).json(user);
 });
