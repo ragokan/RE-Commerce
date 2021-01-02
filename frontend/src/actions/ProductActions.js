@@ -8,3 +8,19 @@ export const FetchProductsAction = () => async (dispatch) => {
     payload: data,
   });
 };
+
+export const AddProductAction = (product) => async (dispatch) => {
+  const { data } = await api.post(routes.addProduct, { product });
+  dispatch({
+    type: "UPDATE_BASKET",
+    payload: data,
+  });
+};
+
+export const RemoveProductAction = (product) => async (dispatch) => {
+  const { data } = await api.post(routes.removeProduct, { product });
+  dispatch({
+    type: "UPDATE_BASKET",
+    payload: data,
+  });
+};
