@@ -23,7 +23,7 @@
   height: 0;
   margin: 8px;
   box-sizing: border-box;
-  border: 200px solid #1890ff;
+  border: 75px solid #1890ff;
   border-color: #1890ff transparent #1890ff transparent;
   animation: lds-hourglass 1.2s infinite;
 }

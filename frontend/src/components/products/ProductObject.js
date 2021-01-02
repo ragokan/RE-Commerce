@@ -10,8 +10,10 @@ const ProductObject = ({ product, user, AddProductAction, RemoveProductAction })
   const [itemExists, setItemExists] = useState(false);
   const [itemCount, setItemCount] = useState(0);
   useEffect(() => {
-    if (!user) return;
-    setBasket(user.basket);
+    if (!user) {
+      setBasket([]);
+      setItemExists(false);
+    } else setBasket(user.basket);
   }, [user]);
   useEffect(() => {
     let index = basket && basket.findIndex((item) => item.product === product._id);
