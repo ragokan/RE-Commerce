@@ -5,6 +5,12 @@ import ErrorObject from "../utils/ErrorObject.js";
 import BasketValidation from "../validation/BasketValidation.js";
 
 // Get /product/id
+export const GetAllProducts = Async(async (req, res, next) => {
+  const products = await Product.find();
+  res.status(200).json(products);
+});
+
+// Get /product/id
 export const GetOneProduct = Async(async (req, res, next) => {
   const product = await Product.findById(req.params.id).populate("seller", ["fullname"]);
   if (!product)
