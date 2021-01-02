@@ -75,6 +75,7 @@ header {
 
 .productImage {
   max-height: 280px;
+  object-fit: contain;
 }
 
 .popoverListFooter {
