@@ -112,3 +112,18 @@ header {
   margin-right: 32px;
   color: rgba(0, 0, 0, 0.45);
 }
+
+.floatRightBasket {
+  float: right;
+}
+
+.basketTitle {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.divider {
+  width: 100%;
+  display: block;
+  height: 30px;
+}

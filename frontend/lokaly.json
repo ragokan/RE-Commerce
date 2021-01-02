@@ -61,6 +61,15 @@
     "en": "Basket",
     "tr": "Sepet"
   },
+  "buy": {
+    "en": "Accept and Buy Products",
+    "tr": "Kabul et ve Ürünleri Satın Al"
+  },
+
+  "clear": {
+    "en": "Clear Basket",
+    "tr": "Sepeti Temizle"
+  },
 
   "noItem": {
     "en": "There are no products yet!",

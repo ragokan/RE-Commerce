@@ -2,7 +2,7 @@ import React from "react";
 import lokaly from "lokaly";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
-import { List } from "antd";
+import { Button, Divider, List, Space } from "antd";
 import BasketProductObject from "./BasketProductObject";
 
 const BasketPage = ({ products }) => {
@@ -18,6 +18,18 @@ const BasketPage = ({ products }) => {
           dataSource={products}
           renderItem={(item) => <BasketProductObject item={item} />}
         />
+        <Divider />
+        <div className="floatRightBasket basketTitle">
+          {`${lokaly("total")}: ${products.reduce(
+            (previous, current) => previous + current.product.price * current.quantity,
+            0
+          )}$`}
+        </div>
+        <div className="divider" />
+        <Space className="floatRightBasket">
+          <Button type="ghost">{lokaly("clear")}</Button>
+          <Button type="primary">{lokaly("buy")}</Button>
+        </Space>
       </div>
     </>
   );
