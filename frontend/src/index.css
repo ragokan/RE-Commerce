@@ -76,3 +76,11 @@ header {
 .productImage {
   max-height: 280px;
 }
+
+.popoverListFooter {
+  font-weight: 500;
+}
+
+.ant-popover {
+  width: 250px;
+}

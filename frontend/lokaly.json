@@ -57,6 +57,21 @@
     "en": "Most Popular Products",
     "tr": "En Popüper Ürünler"
   },
+  "basket": {
+    "en": "Basket",
+    "tr": "Sepet"
+  },
+
+  "noItem": {
+    "en": "There are no products yet!",
+    "tr": "Daha hiç ürün yok!"
+  },
+
+  "total": {
+    "en": "Total",
+    "tr": "Toplam"
+  },
+
   "account": {
     "en": "account",
     "tr": "hesap"

@@ -1,10 +1,11 @@
-import { Badge, Menu, Popover } from "antd";
+import { Badge, Menu } from "antd";
 import lokaly from "lokaly";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { guestLinks, userLinks } from "./Links";
 import { connect } from "react-redux";
 import { LogoutAction } from "../../../actions/AuthActions";
+import BasketPopover from "../../products/BasketPopover";
 
 const NavMenu = ({ user, mode, LogoutAction }) => {
   const {
@@ -34,13 +35,13 @@ const NavMenu = ({ user, mode, LogoutAction }) => {
           </Menu.Item>
 
           <Menu.Item key={"basket"} className="linkName">
-            <Popover title="Basket" placement="bottom">
+            <BasketPopover>
               <Link to="/basket">
                 <Badge count={quantity} className="badge">
                   <i className="fas fa-shopping-cart" />
                 </Badge>
               </Link>
-            </Popover>
+            </BasketPopover>
           </Menu.Item>
         </Menu>
       ) : (
