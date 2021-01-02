@@ -36,7 +36,10 @@ const ProductSchema = mongoose.Schema(
     reviews: [ProductReview],
     seller: UserType,
     favorites: [UserType],
-    totalSellAmount: [UserType],
+    totalSellAmount: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

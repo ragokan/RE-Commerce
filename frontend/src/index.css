@@ -85,3 +85,30 @@ header {
 .ant-popover {
   width: 250px;
 }
+
+.actionButton {
+  transition: color 0.2s;
+}
+
+.actionButton:hover {
+  color: #1890ff !important;
+}
+
+.basketIcons {
+  margin-left: 40px;
+}
+
+.basketIcons span {
+  margin-left: 10px !important;
+}
+
+.mb-2 {
+  margin-bottom: 2px;
+}
+
+.productBasketPrice {
+  float: right;
+  margin-top: -25px;
+  margin-right: 32px;
+  color: rgba(0, 0, 0, 0.45);
+}

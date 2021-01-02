@@ -5,6 +5,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { RegisterAction } from "../../actions/AuthActions";
 import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const Register = ({ RegisterAction }) => {
   const onFinish = ({ name, surname, email, password }) =>
@@ -15,6 +16,9 @@ const Register = ({ RegisterAction }) => {
     });
   return (
     <>
+      <Helmet>
+        <title>R/E-Commerce - Register</title>
+      </Helmet>
       <div className="block">
         <div className="container-fluid">
           <div className="titleHolder">

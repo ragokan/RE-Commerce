@@ -5,11 +5,15 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { LoginAction } from "../../actions/AuthActions";
+import { Helmet } from "react-helmet";
 
 const Login = ({ LoginAction }) => {
   const onFinish = ({ email, password }) => LoginAction({ email, password });
   return (
     <>
+      <Helmet>
+        <title>R/E-Commerce - Login</title>
+      </Helmet>
       <div className="block">
         <div className="container-fluid">
           <div className="titleHolder">
