@@ -5,12 +5,14 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  transition: display 0.1s;
 }
 
 .lds-hourglass {
   display: inline-block;
   position: relative;
   margin: auto;
+  transition: display 0.1s;
 }
 
 .lds-hourglass:after {
