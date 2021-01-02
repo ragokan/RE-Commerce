@@ -28,6 +28,15 @@ export const LoginAction = (account) => async (dispatch) => {
   });
 };
 
+export const RegisterAction = (account) => async (dispatch) => {
+  const { data } = await api.post(routes.registerRoute, account);
+  dispatch(GetUserInfoAction(data));
+  dispatch({
+    type: "ADD_TOKEN",
+    payload: data,
+  });
+};
+
 export const LogoutAction = () => async (dispatch) => {
   await api.post(routes.logoutRoute);
   localStorage.removeItem("authToken");

@@ -23,7 +23,9 @@ api.interceptors.response.use(
   },
   async (error) => {
     store.dispatch(SetLoading(false));
-    let errorMessage = lokaly(String(`${error.response.data.translateCode}`));
+    let errorMessage = error.response.data.translateCode
+      ? lokaly(String(`${error.response.data.translateCode}`))
+      : error.response.data.message;
     if (error.response) {
       store.dispatch(AddErrorAction(errorMessage, "error"));
     }

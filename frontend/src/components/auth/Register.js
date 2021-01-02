@@ -3,9 +3,16 @@ import lokaly from "lokaly";
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { RegisterAction } from "../../actions/AuthActions";
+import { connect } from "react-redux";
 
-const Register = () => {
-  const onFinish = ({ name, surname, email, password }) => {};
+const Register = ({ RegisterAction }) => {
+  const onFinish = ({ name, surname, email, password }) =>
+    RegisterAction({
+      fullname: name + surname,
+      email,
+      password,
+    });
   return (
     <>
       <div className="block">
@@ -69,4 +76,8 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = { RegisterAction };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
