@@ -12,7 +12,7 @@ export const Register = Async(async (req, res, next) => {
   let { email, password, fullname } = req.body;
   const userCheck = await User.findOne({ email });
 
-  if (userCheck) return next(new ErrorObject("User already exists!", 400));
+  if (userCheck) return next(new ErrorObject("User already exists!", 400, 104));
 
   const user = new User({ email, password, fullname });
   await user.save();

@@ -91,6 +91,10 @@
     "en": "User already logged out, to do this action log in!",
     "tr": "Üye zaten çıkış yapmış, bu işlemi yapmak için giriş yapınız!"
   },
+  "104": {
+    "en": "User already exists!",
+    "tr": "Mail zaten kullanılıyor!"
+  },
 
   "201": {
     "en": "The product you are looking for is not found!",
