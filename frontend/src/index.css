@@ -49,6 +49,7 @@ header {
 
 .fa-shopping-cart {
   font-size: 20px;
+  margin-right: 5px !important;
 }
 
 .fa-shopping-cart:hover {
