@@ -1,14 +1,6 @@
-import User from "../models/User.js";
 import Async from "../middleware/Async.js";
-import ErrorObject from "../utils/ErrorObject.js";
 
 // Get /user/me
 export const GetUser = Async(async (req, res, next) => {
-  const user = await User.findById(req.user.id)
-    .select(["-password", "-logintoken"])
-    .populate({
-      path: "basket",
-      populate: { path: "product" },
-    });
-  res.status(200).json(user);
+  res.status(200).json(req.user);
 });
