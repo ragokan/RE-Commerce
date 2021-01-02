@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Button, Divider, List, Space } from "antd";
 import BasketProductObject from "./BasketProductObject";
+import commaFunction from "../../utils/commaFunction";
 
 const BasketPage = ({ products }) => {
   return (
@@ -20,10 +21,12 @@ const BasketPage = ({ products }) => {
         />
         <Divider />
         <div className="floatRightBasket basketTitle">
-          {`${lokaly("total")}: ${products.reduce(
-            (previous, current) => previous + current.product.price * current.quantity,
-            0
-          )}$`}
+          {`${lokaly("total")}: ${commaFunction(
+            products.reduce(
+              (previous, current) => previous + current.product.price * current.quantity,
+              0
+            )
+          )}.00$`}
         </div>
         <div className="divider" />
         <Space className="floatRightBasket">

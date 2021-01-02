@@ -4,6 +4,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { List, Avatar } from "antd";
 import { Link } from "react-router-dom";
+import commaFunction from "../../utils/commaFunction";
 
 const BasketPopover = ({ children, products }) => {
   const content = () => (
@@ -22,10 +23,12 @@ const BasketPopover = ({ children, products }) => {
         </List.Item>
       )}
       footer={
-        <div className="popoverListFooter">{`${lokaly("total")}: ${products.reduce(
-          (previous, current) => previous + current.product.price * current.quantity,
-          0
-        )}$`}</div>
+        <div className="popoverListFooter">{`${lokaly("total")}: ${commaFunction(
+          products.reduce(
+            (previous, current) => previous + current.product.price * current.quantity,
+            0
+          )
+        )}.00$`}</div>
       }
     />
   );
