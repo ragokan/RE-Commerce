@@ -65,3 +65,13 @@ header {
 .ant-badge-count p {
   font-size: 13px;
 }
+
+.ant-card-meta-avatar {
+  float: right !important;
+  font-size: 12.5px;
+  font-weight: bold;
+}
+
+.productImage {
+  max-height: 280px;
+}

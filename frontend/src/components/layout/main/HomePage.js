@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from "react";
 import lokaly from "lokaly";
-import { Col, Divider, Pagination, Row } from "antd";
-import { Card } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
-const { Meta } = Card;
+import { Divider, Pagination, Row } from "antd";
+import ProductObject from "../products/ProductObject";
+import paginate from "../../utils/PaginateFunction";
+import { connect } from "react-redux";
 
-let items = [];
-for (let i = 1; i < 105; i++) {
-  items.push(i);
-}
-
-const paginate = (array, page_size, page_number) =>
-  array.slice((page_number - 1) * page_size, page_number * page_size);
-
-const HomePage = () => {
+const HomePage = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentItems, setCurrentItems] = useState([]);
-  useEffect(
-    () => {
-      setCurrentItems(paginate(items, 12, currentPage));
-    },
-    /*eslint-disable*/ [currentPage]
-  );
+  useEffect(() => {
+    setCurrentItems(paginate(products, 12, currentPage));
+  }, [currentPage, products]);
 
   return (
     <>
@@ -34,20 +23,7 @@ const HomePage = () => {
           <div className="productContainer">
             <Row gutter={16} justify="center" className="productRows">
               {currentItems.map((item, index) => (
-                <Col className="gutter-row" span={6} key={index} xs={24} sm={24} md={12} lg={8}>
-                  <Card
-                    style={{ width: 300 }}
-                    cover={
-                      <img
-                        alt="example"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                      />
-                    }
-                    actions={[<ShoppingCartOutlined title="Add" />]}
-                  >
-                    <Meta title={item} description="This is the description" />
-                  </Card>
-                </Col>
+                <ProductObject product={item} key={index} />
               ))}
             </Row>
           </div>
@@ -55,7 +31,7 @@ const HomePage = () => {
           <Divider orientation="left"></Divider>
           <Pagination
             defaultCurrent={currentPage}
-            total={(items.length / 12) * 10}
+            total={(products.length / 12) * 10}
             showSizeChanger={false}
             current={currentPage}
             onChange={(page) => setCurrentPage(page)}
@@ -67,4 +43,8 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+const mapStateToProps = (state) => ({ products: state.product.products });
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
