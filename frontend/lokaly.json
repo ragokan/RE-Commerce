@@ -76,6 +76,16 @@
     "tr": "Daha hiç ürün yok!"
   },
 
+  "seller": {
+    "en": "Seller",
+    "tr": "Satıcı"
+  },
+
+  "notAuthorized": {
+    "en": "Sorry, you are not authorized to access this page.",
+    "tr": "Üzgünüz, bu sayfayı görmeniz için yetkiniz yok."
+  },
+
   "total": {
     "en": "Total",
     "tr": "Toplam"

@@ -28,6 +28,11 @@ const NavMenu = ({ user, mode, LogoutAction }) => {
               <Link to={link.path}>{lokaly(link.name)}</Link>
             </Menu.Item>
           ))}
+          {user?.type !== "user" && (
+            <Menu.Item key="seller" className="linkName">
+              <Link to="/seller">{lokaly("seller")}</Link>
+            </Menu.Item>
+          )}
           <Menu.Item key={"logout"} className="linkName">
             <Link to="/" onClick={() => LogoutAction()}>
               {lokaly("logout")}

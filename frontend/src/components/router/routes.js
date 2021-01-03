@@ -7,6 +7,8 @@ import Register from "../auth/Register";
 import HomePage from "../layout/main/HomePage";
 import BasketPage from "../products/BasketPage";
 import AccountPage from "../layout/main/AccountPage";
+import SellerPage from "../layout/main/SellerPage";
+import NotAuthorizedPage from "./NotAuthorizedPage";
 
 const Routes = ({ user }) => {
   return (
@@ -20,6 +22,9 @@ const Routes = ({ user }) => {
       <Route exact path="/" component={HomePage} />
       <PrivateRoute exact path="/basket" component={BasketPage} />
       <PrivateRoute exact path="/account" component={AccountPage} />
+      <PrivateRoute exact path="/seller" component={SellerPage}>
+        {user && user.type === "user" && <NotAuthorizedPage />}
+      </PrivateRoute>
     </>
   );
 };

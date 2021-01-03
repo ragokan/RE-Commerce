@@ -1,23 +1,14 @@
 import { connect } from "react-redux";
 import React from "react";
-import { Link, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
+import NotAuthorizedPage from "./NotAuthorizedPage";
 
 const PrivateRoute = ({ user, component: Component, ...rest }) => {
   return (
     <>
       <Route
         {...rest}
-        render={(props) =>
-          user ? (
-            <Component {...props} />
-          ) : (
-            <>
-              <h3 className="center">
-                To see this page, you have to <Link to="/login">Login!</Link>
-              </h3>
-            </>
-          )
-        }
+        render={(props) => (user ? <Component {...props} /> : <NotAuthorizedPage />)}
       ></Route>
     </>
   );
