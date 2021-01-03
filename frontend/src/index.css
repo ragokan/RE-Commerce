@@ -27,6 +27,7 @@ header {
   position: relative;
   bottom: 0px;
   width: 100%;
+  z-index: 0;
 }
 
 .mainLayout {

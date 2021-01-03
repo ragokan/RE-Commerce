@@ -6,6 +6,7 @@ import Login from "../auth/Login";
 import Register from "../auth/Register";
 import HomePage from "../layout/main/HomePage";
 import BasketPage from "../products/BasketPage";
+import AccountPage from "../layout/main/AccountPage";
 
 const Routes = ({ user }) => {
   return (
@@ -18,6 +19,7 @@ const Routes = ({ user }) => {
       </Route>
       <Route exact path="/" component={HomePage} />
       <PrivateRoute exact path="/basket" component={BasketPage} />
+      <PrivateRoute exact path="/account" component={AccountPage} />
     </>
   );
 };
