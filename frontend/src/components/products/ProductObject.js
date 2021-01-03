@@ -20,9 +20,10 @@ const ProductObject = ({ product, user, AddProductAction, RemoveProductAction })
     setItemExists(index === -1 ? false : true);
     setItemCount(index === -1 ? 0 : basket[index].quantity);
   }, [basket, product]);
-  let itemDoesntExistsOnBasket = () => [
-    <ShoppingCartOutlined title="Add To Basket!" onClick={() => AddProductAction(product._id)} />,
-  ];
+  let itemDoesntExistsOnBasket = () =>
+    user && [
+      <ShoppingCartOutlined title="Add To Basket!" onClick={() => AddProductAction(product._id)} />,
+    ];
   let itemExistsOnBasket = () => [
     <MinusOutlined title="-1" onClick={() => RemoveProductAction(product._id)} />,
     itemCount,

@@ -86,6 +86,16 @@
     "tr": "Satın Alımlar"
   },
 
+  "fullname": {
+    "en": "Full Name",
+    "tr": "Tam İsim"
+  },
+
+  "accountType": {
+    "en": "Account Type",
+    "tr": "Hesap Türü"
+  },
+
   "contact": {
     "en": "Contact Us",
     "tr": "Bize Ulaşın"
