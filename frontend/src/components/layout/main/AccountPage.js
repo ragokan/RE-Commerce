@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Menu } from "antd";
+import { Card, Menu } from "antd";
 import { UserOutlined, MessageOutlined, ShoppingOutlined } from "@ant-design/icons";
 import Layout, { Content } from "antd/lib/layout/layout";
 import Sider from "antd/lib/layout/Sider";
 import AccountDetails from "../../account/AccountDetails";
 import ContactUs from "../../account/ContactUs";
 import Purchases from "../../account/Purchases";
+import lokaly from "lokaly";
 
 const AccountPage = () => {
   const [currentRoute, setCurrentRoute] = useState("account");
@@ -23,7 +24,7 @@ const AccountPage = () => {
               <Menu.Item key="account" icon={<UserOutlined />}>
                 Account
               </Menu.Item>
-              <Menu.Item key="purchase" icon={<ShoppingOutlined />}>
+              <Menu.Item key="purchases" icon={<ShoppingOutlined />}>
                 Purchases
               </Menu.Item>
               <Menu.Item key="contact" icon={<MessageOutlined />}>
@@ -36,14 +37,16 @@ const AccountPage = () => {
             <Content
               className="site-layout-background"
               style={{
-                padding: "10px 40px",
+                padding: "0px 40px",
                 margin: 0,
                 minHeight: 280,
               }}
             >
-              {currentRoute === "account" && <AccountDetails />}
-              {currentRoute === "purchase" && <Purchases />}
-              {currentRoute === "contact" && <ContactUs />}
+              <Card title={lokaly(currentRoute)} style={{ textTransform: "capitalize" }}>
+                {currentRoute === "account" && <AccountDetails />}
+                {currentRoute === "purchases" && <Purchases />}
+                {currentRoute === "contact" && <ContactUs />}
+              </Card>
             </Content>
           </Layout>
         </Layout>

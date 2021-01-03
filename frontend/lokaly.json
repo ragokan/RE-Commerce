@@ -81,6 +81,16 @@
     "tr": "Toplam"
   },
 
+  "purchases": {
+    "en": "Purchases",
+    "tr": "Satın Alımlar"
+  },
+
+  "contact": {
+    "en": "Contact Us",
+    "tr": "Bize Ulaşın"
+  },
+
   "account": {
     "en": "account",
     "tr": "hesap"
