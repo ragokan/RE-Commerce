@@ -81,6 +81,21 @@
     "tr": "Satıcı"
   },
 
+  "products": {
+    "en": "Products",
+    "tr": "Ürünler"
+  },
+
+  "addProduct": {
+    "en": "Add Product",
+    "tr": "Ürün Ekle"
+  },
+
+  "gain": {
+    "en": "Gain",
+    "tr": "Kazanç"
+  },
+
   "notAuthorized": {
     "en": "Sorry, you are not authorized to access this page.",
     "tr": "Üzgünüz, bu sayfayı görmeniz için yetkiniz yok."
