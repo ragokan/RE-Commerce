@@ -57,6 +57,11 @@
     "en": "Most Popular Products",
     "tr": "En Popüper Ürünler"
   },
+  "newest": {
+    "en": "Most Recent Products",
+    "tr": "En Yeni Ürünler"
+  },
+
   "basket": {
     "en": "Basket",
     "tr": "Sepet"

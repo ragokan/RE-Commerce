@@ -17,7 +17,7 @@ const HomePage = ({ products }) => {
       <div className="block lessMarginTop">
         <div className="container-fluid">
           <div className="titleHolder">
-            <h2>{lokaly("popular")}</h2>
+            <h2>{lokaly("newest")}</h2>
           </div>
 
           <div className="productContainer">

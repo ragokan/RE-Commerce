@@ -6,7 +6,7 @@ import BasketValidation from "../validation/BasketValidation.js";
 
 // Get /product/id
 export const GetAllProducts = Async(async (req, res, next) => {
-  const products = await Product.find();
+  const products = await Product.find().sort("-createdAt");
   res.status(200).json(products);
 });
 
