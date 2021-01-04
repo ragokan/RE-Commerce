@@ -4,11 +4,7 @@ import * as routes from "../utils/urlRoutes";
 export const GetUserInfoAction = (token = localStorage.getItem("authToken")) => async (
   dispatch
 ) => {
-  if (!token) {
-    const localToken = localStorage.getItem("authToken");
-    if (localToken) api.defaults.headers.common["Authorization"] = localToken;
-    return;
-  }
+  if (!token) return;
   try {
     api.defaults.headers.common["Authorization"] = token;
     localStorage.setItem("authToken", token);
