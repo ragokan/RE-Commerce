@@ -1,9 +1,11 @@
-import React from "react";
-import { Form, Input, Button, Card, Select, Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import categories from "../../utils/categories";
-const { Option } = Select;
-const { TextArea } = Input;
+import React, { useState } from "react";
+import AddProductValues from "./AddProductValues";
+import { Form, Card } from "antd";
+import { storage } from "../../firebase/Config";
+import { connect } from "react-redux";
+import { AddErrorAction } from "../../actions/ErrorActions";
+import { SellerAddProductAction } from "../../actions/SellerActions";
+
 const layout = {
   labelCol: {
     span: 8,
@@ -12,82 +14,42 @@ const layout = {
     span: 16,
   },
 };
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
-const normFile = (e) => {
-  if (Array.isArray(e)) return e;
-  return e && e.fileList;
-};
 
-const AddProduct = ({ setCurrentPage }) => {
+const AddProduct = ({ setCurrentPage, AddErrorAction, SellerAddProductAction }) => {
   const [productForm] = Form.useForm();
 
   const onFinish = (values) => {
-    let image = values.image[0];
-    productForm.resetFields();
-    setCurrentPage("products");
+    let imageToUpload = values.image[0].originFileObj;
+    const storageRef = storage.ref(imageToUpload.name);
+
+    storageRef.put(imageToUpload).on(
+      "state_changed",
+      (_) => {},
+      (err) => AddErrorAction(err, "error"),
+      async () => {
+        const url = await storageRef.getDownloadURL();
+        const newProduct = {
+          ...values,
+          image: url,
+        };
+
+        SellerAddProductAction(newProduct);
+        productForm.resetFields();
+        setCurrentPage("products");
+      }
+    );
   };
   return (
     <Card title="Add Product" style={{ width: "100%" }}>
       <Form name="basic" onFinish={onFinish} className="productForm" form={productForm} {...layout}>
-        <Form.Item label="Name" name="name" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-
-        <Form.Item label="Price" name="price" rules={[{ required: true }]}>
-          <Input type="number" />
-        </Form.Item>
-
-        <Form.Item
-          label="Image"
-          name="image"
-          rules={[{ required: true }]}
-          valuePropName="fileList"
-          getValueFromEvent={normFile}
-        >
-          <Upload
-            transformFile={() => {}}
-            listType="picture"
-            customRequest={({ file, onSuccess }) => onSuccess("ok")}
-          >
-            <Button icon={<UploadOutlined />}>Click to Upload</Button>
-          </Upload>
-        </Form.Item>
-
-        <Form.Item label="Brand" name="brand" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-
-        <Form.Item label="Stock Count" name="stockCount" rules={[{ required: true }]}>
-          <Input type="number" />
-        </Form.Item>
-
-        <Form.Item label="Description" name="description" rules={[{ required: true }]}>
-          <TextArea />
-        </Form.Item>
-
-        <Form.Item label="Category" name="category" rules={[{ required: true }]}>
-          <Select>
-            {categories.map((category, index) => (
-              <Option key={index} value={category}>
-                {category}
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
-            Add Product
-          </Button>
-        </Form.Item>
+        <AddProductValues />
       </Form>
     </Card>
   );
 };
 
-export default AddProduct;
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = { AddErrorAction, SellerAddProductAction };
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
