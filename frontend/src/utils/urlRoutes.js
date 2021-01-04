@@ -6,4 +6,5 @@ export const getAllProducts = "/product/all";
 export const addProduct = "/product/add";
 export const removeProduct = "/product/remove";
 export const sellerAddProduct = "/seller/products";
+export const sellerUpdateProduct = (id) => `/seller/products/${id}`;
 export const sellerDeleteProduct = (id) => `/seller/products/${id}`;

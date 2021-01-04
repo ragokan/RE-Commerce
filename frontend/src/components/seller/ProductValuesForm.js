@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, Button, Select, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import categories from "../../utils/categories";
+import { useHistory } from "react-router-dom";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -17,7 +18,9 @@ const normFile = (e) => {
   return e && e.fileList;
 };
 
-const AddProductValues = () => {
+const ProductValuesForm = ({ formType }) => {
+  const history = useHistory();
+
   return (
     <>
       <Form.Item
@@ -37,9 +40,11 @@ const AddProductValues = () => {
       </Form.Item>
 
       <Form.Item
-        label="Image"
+        label={formType === "add" ? "Image" : "Image to Update (Optional)"}
         name="image"
-        rules={[{ required: true, message: "Please enter  a valid image!" }]}
+        rules={[
+          { required: formType === "add" ? true : false, message: "Please enter  a valid image!" },
+        ]}
         valuePropName="fileList"
         getValueFromEvent={normFile}
       >
@@ -92,11 +97,18 @@ const AddProductValues = () => {
 
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Add Product
+          {formType === "add" ? "Add Product" : "Update Product"}
         </Button>
       </Form.Item>
+      {formType === "update" && (
+        <Form.Item {...tailLayout}>
+          <Button type="secondary" htmlType="reset" onClick={() => history.push("/seller")}>
+            Go Back
+          </Button>
+        </Form.Item>
+      )}
     </>
   );
 };
 
-export default AddProductValues;
+export default ProductValuesForm;

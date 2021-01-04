@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import AddProductValues from "./AddProductValues";
+import React from "react";
+import AddProductValues from "./ProductValuesForm";
 import { Form, Card } from "antd";
 import { storage } from "../../firebase/Config";
 import { connect } from "react-redux";
@@ -42,7 +42,7 @@ const AddProduct = ({ setCurrentPage, AddErrorAction, SellerAddProductAction }) 
   return (
     <Card title="Add Product" style={{ width: "100%" }}>
       <Form name="basic" onFinish={onFinish} className="productForm" form={productForm} {...layout}>
-        <AddProductValues />
+        <AddProductValues formType={"add"} />
       </Form>
     </Card>
   );

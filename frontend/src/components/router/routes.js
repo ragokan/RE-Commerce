@@ -9,6 +9,7 @@ import BasketPage from "../products/BasketPage";
 import AccountPage from "../layout/main/AccountPage";
 import SellerPage from "../layout/main/SellerPage";
 import NotAuthorizedPage from "./NotAuthorizedPage";
+import UpdateProduct from "../seller/UpdateProduct";
 
 const Routes = ({ user }) => {
   return (
@@ -25,6 +26,7 @@ const Routes = ({ user }) => {
       <PrivateRoute exact path="/seller" component={SellerPage}>
         {user && user.type === "user" && <NotAuthorizedPage />}
       </PrivateRoute>
+      <PrivateRoute exact path="/updateProduct/:id" component={UpdateProduct} />
     </>
   );
 };

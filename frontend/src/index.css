@@ -128,3 +128,12 @@ header {
   display: block;
   height: 30px;
 }
+
+.productImageInUpdate {
+  position: absolute;
+  right: 100px;
+}
+
+.maxHeightForImage {
+  max-height: 200px;
+}

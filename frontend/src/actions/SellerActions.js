@@ -18,3 +18,12 @@ export const SellerDeleteProductAction = (id) => async (dispatch) => {
     payload: id,
   });
 };
+
+export const SellerUpdateProductAction = (id, product) => async (dispatch) => {
+  const { data } = await api.patch(routes.sellerUpdateProduct(id), product);
+
+  dispatch({
+    type: "SELLER_UPDATE_PRODUCT",
+    payload: data,
+  });
+};
