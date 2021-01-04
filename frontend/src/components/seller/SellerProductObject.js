@@ -21,6 +21,8 @@ const SellersProduct = ({ product, SellerDeleteProductAction }) => {
               okText="Yes"
               cancelText="No"
               onConfirm={() => SellerDeleteProductAction(product._id)}
+              okButtonProps={{ type: "primary", danger: true }}
+              cancelButtonProps={{ type: "primary" }}
             >
               <DeleteOutlined />
             </Popconfirm>,
