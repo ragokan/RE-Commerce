@@ -4,7 +4,6 @@ import { Button, List, Radio } from "antd";
 import lokaly from "lokaly";
 let currentLanguage = localStorage.getItem("language");
 if (!currentLanguage) currentLanguage = "en";
-console.log(currentLanguage);
 
 const AccountDetails = ({ user }) => {
   const setSelectedLanguage = (lang) => {
