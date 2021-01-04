@@ -75,7 +75,7 @@ header {
 }
 
 .productImage {
-  max-height: 280px;
+  height: 280px;
   object-fit: contain;
 }
 

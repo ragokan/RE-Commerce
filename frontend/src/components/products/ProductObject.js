@@ -37,7 +37,13 @@ const ProductObject = ({ product, user, AddProductAction, RemoveProductAction })
         cover={<img alt="productimage" src={product.image} className="productImage" />}
         actions={itemExists ? itemExistsOnBasket() : itemDoesntExistsOnBasket()}
       >
-        <Meta title={product.name} description={product.description} avatar={product.price + "$"} />
+        <Meta
+          title={product.name}
+          description={`${product.description.slice(0, 30)}  ${
+            product.description.length > 30 ? "..." : ""
+          }`}
+          avatar={product.price + "$"}
+        />
       </Card>
     </Col>
   );
