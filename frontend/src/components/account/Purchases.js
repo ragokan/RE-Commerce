@@ -3,6 +3,7 @@ import { Table } from "antd";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import commaFunction from "../../utils/commaFunction";
 
 const columns = [
   {
@@ -34,6 +35,7 @@ const columns = [
   {
     title: "Total Amount",
     dataIndex: "totalAmount",
+    render: (amount) => commaFunction(amount) + "$",
   },
   {
     title: "Address",
