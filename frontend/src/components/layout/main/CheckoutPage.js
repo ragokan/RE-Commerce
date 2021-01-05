@@ -1,11 +1,23 @@
 import React from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { Button, Card, Form } from "antd";
+import { Card, Form } from "antd";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { CreateNewPayment } from "../../../actions/PaymentActions";
+import { useHistory } from "react-router-dom";
+import CheckoutValues from "../payment/CheckoutValues";
 
-const CheckoutPage = ({ CreateNewPayment, loading }) => {
+const layout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+
+const CheckoutPage = ({ CreateNewPayment, loading, products }) => {
+  const history = useHistory();
   const elements = useElements();
   const stripe = useStripe();
   const [paymentForm] = Form.useForm();
@@ -16,7 +28,8 @@ const CheckoutPage = ({ CreateNewPayment, loading }) => {
     });
 
     if (!error) {
-      await CreateNewPayment({ paymentToken: paymentMethod.id });
+      const result = await CreateNewPayment({ paymentToken: paymentMethod.id });
+      if (result.success) history.push("/checkoutSuccess");
     }
   };
   return (
@@ -25,14 +38,17 @@ const CheckoutPage = ({ CreateNewPayment, loading }) => {
         <title>R/E-Commerce - Checkout</title>
       </Helmet>
       <div className="container-fluid">
-        <Card title="Checkout" style={{ maxWidth: 500, margin: "auto" }}>
-          <Form name="basic" onFinish={onFinish} className="productForm" form={paymentForm}>
-            <CardElement options={{ hidePostalCode: true }} />
-            <Form.Item>
-              <Button type="primary" htmlType="submit" disabled={loading}>
-                Complete Payment!
-              </Button>
-            </Form.Item>
+        <Card title="Checkout" style={{ maxWidth: 550, margin: "auto" }}>
+          <Form
+            name="basic"
+            onFinish={onFinish}
+            className="productForm"
+            form={paymentForm}
+            {...layout}
+          >
+            <CheckoutValues loading={loading} products={products}>
+              <CardElement options={{ hidePostalCode: true }} />
+            </CheckoutValues>
           </Form>
         </Card>
       </div>
@@ -40,7 +56,7 @@ const CheckoutPage = ({ CreateNewPayment, loading }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ loading: state.loading });
+const mapStateToProps = (state) => ({ loading: state.loading, products: state.user.user.basket });
 
 const mapDispatchToProps = { CreateNewPayment };
 

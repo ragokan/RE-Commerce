@@ -34,7 +34,7 @@ export const CreateNewPayment = Async(async (req, res, next) => {
       // do the card things here
     } else return paymentError("Payment is not accepted.");
 
-    res.status(200).json("Success");
+    res.status(200).json({ success: true });
   } catch (error) {
     return paymentError(error);
   }
