@@ -9,6 +9,11 @@ export const FetchProductsAction = () => async (dispatch) => {
   });
 };
 
+export const GetOneProductAction = async (id) => {
+  const { data } = await api.get(routes.getOneProduct(id));
+  return data;
+};
+
 export const AddProductAction = (product) => async (dispatch) => {
   const { data } = await api.post(routes.addProduct, { product });
   dispatch({

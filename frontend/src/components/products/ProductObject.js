@@ -3,6 +3,7 @@ import { Card, Col } from "antd";
 import { ShoppingCartOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { AddProductAction, RemoveProductAction } from "../../actions/ProductActions";
+import { Link } from "react-router-dom";
 const { Meta } = Card;
 
 const ProductObject = ({ product, user, AddProductAction, RemoveProductAction }) => {
@@ -38,7 +39,7 @@ const ProductObject = ({ product, user, AddProductAction, RemoveProductAction })
         actions={itemExists ? itemExistsOnBasket() : itemDoesntExistsOnBasket()}
       >
         <Meta
-          title={product.name}
+          title={<Link to={`/product/${product._id}`}>{product.name}</Link>}
           description={`${product.description.slice(0, 30)}  ${
             product.description.length > 30 ? "..." : ""
           }`}

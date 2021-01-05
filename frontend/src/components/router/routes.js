@@ -14,6 +14,7 @@ import BasketPage from "../layout/main/BasketPage";
 import { loadStripe } from "@stripe/stripe-js";
 import { stripePublicKey } from "../../utils/publicKeys";
 import { Elements } from "@stripe/react-stripe-js";
+import DetailedProductView from "../products/DetailedProductView";
 const stripePromise = loadStripe(stripePublicKey);
 
 const Routes = ({ user }) => {
@@ -26,6 +27,7 @@ const Routes = ({ user }) => {
         {user && <Redirect to="/" />}
       </Route>
       <Route exact path="/" component={HomePage} />
+      <Route exact path="/product/:id" component={DetailedProductView} />
       <PrivateRoute exact path="/basket" component={BasketPage} />
       <PrivateRoute exact path="/account" component={AccountPage} />
       <PrivateRoute exact path="/seller" component={SellerPage}>
