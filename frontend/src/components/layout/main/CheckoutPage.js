@@ -21,14 +21,17 @@ const CheckoutPage = ({ CreateNewPayment, loading, products }) => {
   const elements = useElements();
   const stripe = useStripe();
   const [paymentForm] = Form.useForm();
-  const onFinish = async () => {
+  const onFinish = async (values) => {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement("card"),
     });
 
     if (!error) {
-      const result = await CreateNewPayment({ paymentToken: paymentMethod.id });
+      const result = await CreateNewPayment({
+        paymentToken: paymentMethod.id,
+        address: { ...values },
+      });
       if (result.success) history.push("/checkoutSuccess");
     }
   };

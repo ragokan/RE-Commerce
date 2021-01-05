@@ -2,17 +2,17 @@ import Async from "../middleware/Async.js";
 import Stripe from "stripe";
 import ErrorObject from "../utils/ErrorObject.js";
 import User from "../models/User.js";
+import Order from "../models/Order.js";
+import Product from "../models/Product.js";
+
 const stripe = new Stripe(process.env.STRIPE_KEY);
 
 // Validate Payment
 export const CreateNewPayment = Async(async (req, res, next) => {
-  const paymentError = (error) =>
-    next(
-      new ErrorObject("An error happened while trying to pay your products, details: " + error, 400)
-    );
+  const paymentError = (error) => next(new ErrorObject(error, 400));
 
   try {
-    const { paymentToken } = req.body;
+    const { paymentToken, address } = req.body;
     const user = await User.findById(req.user._id).populate({
       path: "basket",
       populate: { path: "product" },
@@ -31,10 +31,32 @@ export const CreateNewPayment = Async(async (req, res, next) => {
     });
 
     if (newPayment.status === "succeeded") {
-      // do the card things here
-    } else return paymentError("Payment is not accepted.");
+      // Order Part
+      const newOrder = await Order.create({
+        buyer: user._id,
+        products: user.basket.map((item) => item.product._id),
+        totalAmount: amount,
+        address: { ...address },
+      });
 
-    res.status(200).json({ success: true });
+      // Product Part
+      await user.basket.forEach(async (item) => {
+        let product = await Product.findById(item.product._id);
+        product.totalSellAmount = (await product.totalSellAmount) + 1;
+        await product.save();
+      });
+
+      // User Part
+      await user.basket.forEach(async (item) => {
+        const index = await user.purchasedProducts.findIndex((item) => item === product._id);
+        if (index !== -1) await user.purchasedProducts.push(product._id);
+      });
+
+      user.basket = [];
+      await user.save();
+
+      res.status(200).json({ success: true, newOrder, user });
+    } else return paymentError("Payment is not accepted.");
   } catch (error) {
     return paymentError(error);
   }

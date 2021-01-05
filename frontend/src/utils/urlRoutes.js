@@ -9,3 +9,4 @@ export const sellerAddProduct = "/seller/products";
 export const sellerUpdateProduct = (id) => `/seller/products/${id}`;
 export const sellerDeleteProduct = (id) => `/seller/products/${id}`;
 export const paymentRoute = "/payment/create";
+export const orderRoute = "/order";
