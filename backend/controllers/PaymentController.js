@@ -34,7 +34,10 @@ export const CreateNewPayment = Async(async (req, res, next) => {
       // Order Part
       const newOrder = await Order.create({
         buyer: user._id,
-        products: user.basket.map((item) => item.product._id),
+        products: user.basket.map((item) => ({
+          quantity: item.quantity,
+          product: item.product._id,
+        })),
         totalAmount: amount,
         address: { ...address },
       });

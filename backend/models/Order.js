@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import { ProductType, UserType } from "./Utilities.js";
+import { BasketSchema, UserType } from "./Utilities.js";
 
 const Order = new mongoose.Schema(
   {
     buyer: UserType,
-    products: [ProductType],
+    products: [BasketSchema],
     date: {
       type: Date,
       default: new Date(),
