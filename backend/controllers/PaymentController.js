@@ -51,8 +51,9 @@ export const CreateNewPayment = Async(async (req, res, next) => {
 
       // User Part
       await user.basket.forEach(async (item) => {
+        let product = await Product.findById(item.product._id);
         const index = await user.purchasedProducts.findIndex((item) => item === product._id);
-        if (index !== -1) await user.purchasedProducts.push(product._id);
+        if (index === -1) await user.purchasedProducts.push(product._id);
       });
 
       user.basket = [];
