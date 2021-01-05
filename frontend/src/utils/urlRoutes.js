@@ -8,3 +8,4 @@ export const removeProduct = "/product/remove";
 export const sellerAddProduct = "/seller/products";
 export const sellerUpdateProduct = (id) => `/seller/products/${id}`;
 export const sellerDeleteProduct = (id) => `/seller/products/${id}`;
+export const paymentRoute = "/payment/create";

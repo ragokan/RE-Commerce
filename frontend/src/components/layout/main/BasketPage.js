@@ -3,10 +3,12 @@ import lokaly from "lokaly";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Button, Divider, List, Space } from "antd";
-import BasketProductObject from "./BasketProductObject";
-import commaFunction from "../../utils/commaFunction";
+import BasketProductObject from "../../products/BasketProductObject";
+import commaFunction from "../../../utils/commaFunction";
+import { useHistory } from "react-router-dom";
 
 const BasketPage = ({ products }) => {
+  const history = useHistory();
   return (
     <>
       <Helmet>
@@ -31,7 +33,13 @@ const BasketPage = ({ products }) => {
         <div className="divider" />
         <Space className="floatRightBasket">
           <Button type="ghost">{lokaly("clear")}</Button>
-          <Button type="primary">{lokaly("buy")}</Button>
+          <Button
+            type="primary"
+            onClick={() => history.push("/checkout")}
+            disabled={products.length < 1}
+          >
+            {lokaly("buy")}
+          </Button>
         </Space>
       </div>
     </>

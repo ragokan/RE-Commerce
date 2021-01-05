@@ -5,11 +5,16 @@ import { Route, Redirect } from "react-router-dom";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
 import HomePage from "../layout/main/HomePage";
-import BasketPage from "../products/BasketPage";
 import AccountPage from "../layout/main/AccountPage";
 import SellerPage from "../layout/main/SellerPage";
 import NotAuthorizedPage from "./NotAuthorizedPage";
 import UpdateProduct from "../seller/UpdateProduct";
+import CheckoutPage from "../layout/main/CheckoutPage";
+import BasketPage from "../layout/main/BasketPage";
+import { loadStripe } from "@stripe/stripe-js";
+import { stripePublicKey } from "../../utils/publicKeys";
+import { Elements } from "@stripe/react-stripe-js";
+const stripePromise = loadStripe(stripePublicKey);
 
 const Routes = ({ user }) => {
   return (
@@ -27,6 +32,11 @@ const Routes = ({ user }) => {
         {user && user.type === "user" && <NotAuthorizedPage />}
       </PrivateRoute>
       <PrivateRoute exact path="/updateProduct/:id" component={UpdateProduct} />
+      <Elements stripe={stripePromise}>
+        <PrivateRoute exact path="/checkout" component={CheckoutPage}>
+          {user && user.basket.length < 1 && <Redirect to="basket" />}
+        </PrivateRoute>
+      </Elements>
     </>
   );
 };
