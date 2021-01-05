@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { FetchOrders } from "../../actions/OrderActions";
 
-const Purchases = ({ orders, FetchOrders }) => {
-  useEffect(() => {
-    FetchOrders();
-  }, [FetchOrders]);
+const Purchases = ({ orders }) => {
+  console.log(orders);
   return <div>Purchases</div>;
 };
 
@@ -13,6 +10,6 @@ const mapStateToProps = (state) => ({
   orders: state.order.orders,
 });
 
-const mapDispatchToProps = { FetchOrders };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Purchases);

@@ -1,5 +1,6 @@
 import api from "../utils/api";
 import * as routes from "../utils/urlRoutes";
+import { FetchOrders } from "./OrderActions";
 
 export const GetUserInfoAction = (token = localStorage.getItem("authToken")) => async (
   dispatch
@@ -13,6 +14,7 @@ export const GetUserInfoAction = (token = localStorage.getItem("authToken")) => 
       type: "FETCH_USER",
       payload: data,
     });
+    dispatch(FetchOrders());
   } catch (error) {
     localStorage.removeItem("authToken");
     dispatch({ type: "LOGIN_ERROR" });

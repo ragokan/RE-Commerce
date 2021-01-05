@@ -10,6 +10,7 @@ const DataHooks = ({ GetUserInfoAction, FetchProductsAction }) => {
   useEffect(() => {
     FetchProductsAction();
   }, [FetchProductsAction]);
+
   return <></>;
 };
 
