@@ -7,3 +7,6 @@ export const GetOrders = Async(async (req, res, next) => {
   const orders = await Order.find({ buyer: req.user._id });
   res.status(200).json(orders);
 });
+
+// Get All Orders
+export const GetAllOrders = Async(async (req, res, next) => {});

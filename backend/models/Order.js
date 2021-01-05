@@ -18,8 +18,25 @@ const Order = new mongoose.Schema(
       country: { type: String, required: true },
       description: { type: String, required: true },
     },
+    delivered: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    cargoLocation: {
+      type: String,
+      default: "Not Moved Yet",
+      required: false,
+    },
   },
   { timestamps: true }
 );
+
+// mongoose
+//   .model("Order", Order)
+//   .collection.updateMany({ delivered: null }, { $set: { delivered: false } });
+// mongoose
+//   .model("Order", Order)
+//   .collection.updateMany({ cargoLocation: null }, { $set: { cargoLocation: "Not Moved Yet" } });
 
 export default mongoose.model("Order", Order);
