@@ -9,4 +9,6 @@ export const GetOrders = Async(async (req, res, next) => {
 });
 
 // Get All Orders
-export const GetAllOrders = Async(async (req, res, next) => {});
+export const GetAllOrders = Async(async (req, res, next) => {
+  const orders = await Order.find().populate("buyer", ["email", "password", "fullname"]);
+});
