@@ -1,22 +1,43 @@
 import React, { useEffect, useState } from "react";
 import lokaly from "lokaly";
-import { Divider, Pagination, Row } from "antd";
+import { Button, Divider, Dropdown, Menu, Pagination, Row } from "antd";
 import ProductObject from "../../products/ProductObject";
 import paginate from "../../../utils/PaginateFunction";
 import { connect } from "react-redux";
+import { DownOutlined } from "@ant-design/icons";
+import categories from "../../../utils/categories";
 
 const HomePage = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentItems, setCurrentItems] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState("All Products");
+
+  const menu = (
+    <Menu selectedKeys={[currentCategory]} defaultSelectedKeys={[currentCategory]}>
+      <Menu.Item key={"All Products"} onClick={() => setCurrentCategory("All Products")}>
+        All Products
+      </Menu.Item>
+      {categories.map((category) => (
+        <Menu.Item key={category} onClick={() => setCurrentCategory(category)}>
+          {category}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+
   useEffect(() => {
+    let filteredProducts =
+      currentCategory === "All Products"
+        ? products
+        : products.filter((product) => product.category === currentCategory);
     setCurrentItems(
       paginate(
-        products.filter((product) => product.stockCount > 0),
+        filteredProducts.filter((product) => product.stockCount > 0),
         12,
         currentPage
       )
     );
-  }, [currentPage, products]);
+  }, [currentPage, products, currentCategory]);
 
   return (
     <>
@@ -24,6 +45,11 @@ const HomePage = ({ products }) => {
         <div className="container-fluid">
           <div className="titleHolder">
             <h2>{lokaly("newest")}</h2>
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <Button>
+                {currentCategory} <DownOutlined />
+              </Button>
+            </Dropdown>
           </div>
 
           <div className="productContainer">
