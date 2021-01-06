@@ -4,6 +4,7 @@ import { ShoppingCartOutlined, MinusOutlined, PlusOutlined } from "@ant-design/i
 import { connect } from "react-redux";
 import { AddProductAction, RemoveProductAction } from "../../actions/ProductActions";
 import { Link } from "react-router-dom";
+import commaFunction from "../../utils/commaFunction";
 const { Meta } = Card;
 
 const ProductObject = ({ product, user, AddProductAction, RemoveProductAction }) => {
@@ -43,7 +44,7 @@ const ProductObject = ({ product, user, AddProductAction, RemoveProductAction })
           description={`${product.description.slice(0, 30)}  ${
             product.description.length > 30 ? "..." : ""
           }`}
-          avatar={product.price + "$"}
+          avatar={commaFunction(product.price) + "$"}
         />
       </Card>
     </Col>

@@ -42,16 +42,14 @@ export const CreateNewPayment = Async(async (req, res, next) => {
         address: { ...address },
       });
 
-      // Product Part
       await user.basket.forEach(async (item) => {
+        // Product Part
         let product = await Product.findById(item.product._id);
-        product.totalSellAmount = (await product.totalSellAmount) + 1;
+        product.totalSellAmount = product.totalSellAmount + 1;
+        product.stockCount = product.stockCount - 1;
         await product.save();
-      });
 
-      // User Part
-      await user.basket.forEach(async (item) => {
-        let product = await Product.findById(item.product._id);
+        // User Part
         const index = await user.purchasedProducts.findIndex((item) => item === product._id);
         if (index === -1) await user.purchasedProducts.push(product._id);
       });

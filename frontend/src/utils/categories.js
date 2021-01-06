@@ -1,3 +1,3 @@
-let categories = ["Laptops", "Phones", "Hygenia", "Clothing", "Utensils", "Sports"];
+let categories = ["Technology", "Hygenia", "Clothing", "Utensils", "Sports"];
 
 export default categories;
