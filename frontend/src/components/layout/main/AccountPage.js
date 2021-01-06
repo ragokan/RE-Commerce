@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Menu } from "antd";
 import { UserOutlined, MessageOutlined, ShoppingOutlined, DollarOutlined } from "@ant-design/icons";
 import Layout, { Content } from "antd/lib/layout/layout";
@@ -7,9 +7,15 @@ import AccountDetails from "../../account/AccountDetails";
 import ContactUs from "../../account/ContactUs";
 import Purchases from "../../account/Purchases";
 import lokaly from "lokaly";
+import { useLocation } from "react-router";
 
-const AccountPage = () => {
+const AccountPage = (props) => {
   const [currentRoute, setCurrentRoute] = useState("account");
+  const { state } = useLocation();
+  useEffect(() => {
+    if (state) setCurrentRoute(state.route);
+  }, [state]);
+
   return (
     <>
       <div className="container-fluid">
@@ -18,7 +24,8 @@ const AccountPage = () => {
             <Menu
               onClick={(e) => setCurrentRoute(e.key)}
               style={{ width: 256, minHeight: "82vh" }}
-              defaultSelectedKeys={["account"]}
+              defaultSelectedKeys={[currentRoute]}
+              selectedKeys={[currentRoute]}
               mode="inline"
             >
               <Menu.Item key="account" icon={<UserOutlined />}>

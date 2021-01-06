@@ -32,7 +32,7 @@ const CheckoutPage = ({ CreateNewPayment, loading, products }) => {
         paymentToken: paymentMethod.id,
         address: { ...values },
       });
-      if (result.success) history.push("/checkoutSuccess");
+      if (result.success) history.push("/checkoutSuccess/" + result.newOrder._id);
     }
   };
   return (

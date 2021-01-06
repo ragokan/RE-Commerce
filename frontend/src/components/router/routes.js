@@ -15,6 +15,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { stripePublicKey } from "../../utils/publicKeys";
 import { Elements } from "@stripe/react-stripe-js";
 import DetailedProductView from "../products/DetailedProductView";
+import CheckoutSuccess from "../layout/payment/CheckoutSuccess";
 const stripePromise = loadStripe(stripePublicKey);
 
 const Routes = ({ user }) => {
@@ -29,6 +30,7 @@ const Routes = ({ user }) => {
       <Route exact path="/" component={HomePage} />
       <Route exact path="/product/:id" component={DetailedProductView} />
       <PrivateRoute exact path="/basket" component={BasketPage} />
+      <PrivateRoute exact path="/checkoutSuccess/:id" component={CheckoutSuccess} />
       <PrivateRoute exact path="/account" component={AccountPage} />
       <PrivateRoute exact path="/seller" component={SellerPage}>
         {user && user.type === "user" && <NotAuthorizedPage />}
