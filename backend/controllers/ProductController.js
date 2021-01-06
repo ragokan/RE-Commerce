@@ -3,6 +3,7 @@ import Product from "../models/Product.js";
 import Async from "../middleware/Async.js";
 import ErrorObject from "../utils/ErrorObject.js";
 import BasketValidation from "../validation/BasketValidation.js";
+import ReviewValidation from "../validation/ReviewValidation.js";
 
 // Get /product/id
 export const GetAllProducts = Async(async (req, res, next) => {
@@ -98,6 +99,9 @@ export const ClearBasket = Async(async (req, res, next) => {
 
 // Post /product/:id/review
 export const AddProductReview = Async(async (req, res, next) => {
+  const { error } = ReviewValidation(req.body);
+  if (error) return next(new ErrorObject(error.details[0].message, 400));
+
   const product = await Product.findById(req.params.id);
 
   const userCheck = req.user.purchasedProducts.findIndex((item) => item === product._id);
@@ -109,8 +113,7 @@ export const AddProductReview = Async(async (req, res, next) => {
 
   const review = {
     user: req.user._id,
-    rating: req.body.rating,
-    text: req.body.text,
+    ...req.body,
   };
   product.reviews.push(review);
   await product.save();
