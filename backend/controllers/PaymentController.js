@@ -13,7 +13,7 @@ export const CreateNewPayment = Async(async (req, res, next) => {
 
   try {
     const { paymentToken, address } = req.body;
-    const user = await User.findById(req.user._id).populate({
+    let user = await User.findById(req.user._id).populate({
       path: "basket",
       populate: { path: "product" },
     });
@@ -50,8 +50,15 @@ export const CreateNewPayment = Async(async (req, res, next) => {
         await product.save();
 
         // User Part
-        const index = await user.purchasedProducts.findIndex((item) => item === product._id);
-        if (index === -1) await user.purchasedProducts.push(product._id);
+        const index = user.purchasedProducts.findIndex((item) => item === product._id);
+        if (index === -1)
+          await User.updateOne(
+            user,
+            {
+              purchasedProducts: [product._id, ...user.purchasedProducts],
+            },
+            { new: true }
+          );
       });
 
       user.basket = [];

@@ -17,9 +17,7 @@ const BasketIcons = ({ item }) => {
         text={item.product.favorites.length}
         key="list-vertical-star-o"
       />
-      {"   "}
       <IconText icon={UserOutlined} text={item.product.totalSellAmount} key="list-v" />
-      {"   "}
       <IconText
         icon={MessageOutlined}
         text={item.product.reviews.length}

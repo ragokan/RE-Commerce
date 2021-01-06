@@ -8,7 +8,7 @@ const Purchases = ({ orders }) => {
     <>
       <Table
         columns={columns}
-        dataSource={orders}
+        dataSource={orders.slice(0).reverse()}
         bordered
         size="large"
         pagination={{ pageSize: 10 }}

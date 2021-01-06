@@ -137,3 +137,26 @@ header {
 .maxHeightForImage {
   max-height: 200px;
 }
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.productDetailedImage {
+  max-width: 80%;
+  max-height: 350px;
+  margin: 5px;
+}
+
+.productDetailsIcons {
+  margin-top: 2.5px;
+  font-size: 15px;
+}
+
+.ant-layout-sider {
+  background: white !important;
+}
