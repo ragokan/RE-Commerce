@@ -37,14 +37,24 @@ export const GetUserBasket = Async(async (req, res, next) => {
 export const AddProductToBasket = Async(async (req, res, next) => {
   const { error } = BasketValidation(req.body);
   if (error) return next(new ErrorObject("Please provide a correct product id to add!", 400));
-  let { product } = req.body;
 
+  let { product } = req.body;
   let user = await User.findById(req.user._id);
+
+  // We will check stock count in details to add product to basket.
+  const stockCountValidation = await Product.findById(product);
+  if (stockCountValidation.stockAmount < 1)
+    return next(new ErrorObject("The product doesn't have any stock to add.", 400));
 
   if (user.basket.length > 0) {
     let itemIndex = user.basket.findIndex((item) => String(item.product) === String(product));
+
     if (itemIndex === -1) user.basket.push({ product, quantity: 1 });
-    else user.basket[itemIndex].quantity++;
+    else {
+      if (user.basket[itemIndex].quantity >= stockCountValidation.stockAmount)
+        return next(new ErrorObject("The product doesn't have any stock to add.", 400));
+      user.basket[itemIndex].quantity++;
+    }
   } else await user.basket.push({ product, quantity: 1 });
 
   await user.save();
