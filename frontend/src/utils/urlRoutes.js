@@ -10,6 +10,7 @@ export const getOneProduct = (id) => `/product/${id}`;
 export const addProduct = "/product/add";
 export const removeProduct = "/product/remove";
 export const clearBasket = "/product/clear";
+export const addProductReview = (id) => `/product/${id}/review`;
 
 // Seller Part
 export const sellerAddProduct = "/seller/products";

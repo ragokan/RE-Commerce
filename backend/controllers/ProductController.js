@@ -17,8 +17,9 @@ export const GetOneProduct = Async(async (req, res, next) => {
     .populate("seller", ["fullname"])
     .populate({
       path: "reviews",
-      populate: { path: "user" },
+      populate: { path: "user", select: ["-password", "-logintoken"] },
     });
+
   if (!product)
     return next(new ErrorObject("The product you are looking for is not found!", 404, 201));
 
@@ -102,13 +103,20 @@ export const AddProductReview = Async(async (req, res, next) => {
   const { error } = ReviewValidation(req.body);
   if (error) return next(new ErrorObject(error.details[0].message, 400));
 
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id).populate({
+    path: "reviews",
+    populate: { path: "user", select: ["-password", "-logintoken"] },
+  });
 
-  const userCheck = req.user.purchasedProducts.findIndex((item) => item === product._id);
+  const userCheck = req.user.purchasedProducts.findIndex(
+    (item) => String(item) === String(product._id)
+  );
   if (userCheck === -1)
     return next(new ErrorObject("To add a review to product, you have to buy it first!", 400));
 
-  const productCheck = product.reviews.findIndex((item) => item.user === req.user._id);
+  const productCheck = product.reviews.findIndex(
+    (item) => String(item.user._id) === String(req.user._id)
+  );
   if (productCheck !== -1) return next(new ErrorObject("You already reviewed this product!", 400));
 
   const review = {

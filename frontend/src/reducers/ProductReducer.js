@@ -14,6 +14,7 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, products: state.products.filter((item) => item._id !== payload) };
 
     case "SELLER_UPDATE_PRODUCT":
+    case "ADD_REVIEW":
       return {
         ...state,
         products: state.products.map((item) => (item._id === payload._id ? payload : item)),

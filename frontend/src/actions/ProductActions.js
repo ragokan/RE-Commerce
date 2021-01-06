@@ -36,3 +36,12 @@ export const ClearBasketAction = () => async (dispatch) => {
     type: "CLEAR_BASKET",
   });
 };
+
+export const AddReviewToProductAction = (id, review) => async (dispatch) => {
+  const { data } = await api.post(routes.addProductReview(id), review);
+  dispatch({
+    type: "ADD_REVIEW",
+    payload: data,
+  });
+  return data;
+};
