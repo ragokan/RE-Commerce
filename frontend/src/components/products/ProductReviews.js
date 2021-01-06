@@ -1,4 +1,4 @@
-import { Card, Divider, Form, Input, Button, Rate } from "antd";
+import { Card, Divider, Form, Input, Button, Rate, List } from "antd";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { AddReviewToProductAction } from "../../actions/ProductActions";
@@ -27,33 +27,35 @@ const ProductReviews = ({ user, product, AddReviewToProductAction, setProduct })
     setUserAlreadyReviewed(true);
   };
 
-  useEffect(() => {
-    const checker = async () => {
-      if (!user) return;
-      if (!product) return;
-      if (!product.reviews) return;
-      if (counter > 0) return;
-      setCounter((prevCount) => prevCount + 1);
+  useEffect(
+    () => {
+      const checker = async () => {
+        if (!user) return;
+        if (!product) return;
+        if (!product.reviews) return;
+        if (counter > 0) return;
+        setCounter((prevCount) => prevCount + 1);
 
-      const productCheck = await product.reviews.findIndex(
-        (item) => String(item.user._id) === String(user._id)
-      );
+        const productCheck = await product.reviews.findIndex(
+          (item) => String(item.user._id) === String(user._id)
+        );
 
-      if (productCheck !== -1) {
-        setCanAddReview(false);
-        setUserAlreadyReviewed(true);
-      } else {
-        const index = await user.purchasedProducts.findIndex((item) => item === product._id);
-        if (index !== -1) setCanAddReview(true);
-      }
-    };
-    checker();
-  }, [user, product]);
+        if (productCheck !== -1) {
+          setCanAddReview(false);
+          setUserAlreadyReviewed(true);
+        } else {
+          const index = await user.purchasedProducts.findIndex((item) => item === product._id);
+          if (index !== -1) setCanAddReview(true);
+        }
+      };
+      checker();
+    },
+    /*eslint-disable*/ [user, product]
+  );
 
   return (
     <>
       <Divider orientation="left">Reviews</Divider>
-      {product?.reviews?.length < 1 ? <h4>{"No reviews yet."}</h4> : <> </>}
       {!userAlreadyReviewed && canAddReview ? (
         <Card bordered title="Add Review">
           <Form {...layout} onFinish={onFinish}>
@@ -87,6 +89,31 @@ const ProductReviews = ({ user, product, AddReviewToProductAction, setProduct })
               ? "You already reviewed this product"
               : "To add review, you have to buy it."}
           </h4>
+        </>
+      )}
+      {product?.reviews?.length < 1 ? (
+        <h4>{"No reviews yet."}</h4>
+      ) : (
+        <>
+          <List
+            itemLayout="horizontal"
+            dataSource={product.reviews}
+            renderItem={(item, index) => (
+              <>
+                <Divider />
+                <List.Item>
+                  <List.Item.Meta
+                    title={
+                      <p>
+                        {index + 1} : {item.text}
+                      </p>
+                    }
+                    description={<Rate disabled defaultValue={item.rating} />}
+                  />
+                </List.Item>
+              </>
+            )}
+          />
         </>
       )}
     </>
