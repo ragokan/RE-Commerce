@@ -67,6 +67,15 @@
     "tr": "Kategoriler"
   },
 
+  "becameASeller": {
+    "en": "Became A Seller",
+    "tr": "Satıcı Olun"
+  },
+  "favorites": {
+    "en": "Favorites",
+    "tr": "Favoriler"
+  },
+
   "basket": {
     "en": "Basket",
     "tr": "Sepet"

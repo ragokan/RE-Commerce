@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Card, Menu } from "antd";
-import { UserOutlined, MessageOutlined, ShoppingOutlined, DollarOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  MessageOutlined,
+  ShoppingOutlined,
+  DollarOutlined,
+  StarOutlined,
+} from "@ant-design/icons";
 import Layout, { Content } from "antd/lib/layout/layout";
 import Sider from "antd/lib/layout/Sider";
 import AccountDetails from "../../account/AccountDetails";
@@ -33,6 +39,9 @@ const AccountPage = (props) => {
               </Menu.Item>
               <Menu.Item key="purchases" icon={<ShoppingOutlined />}>
                 Purchases
+              </Menu.Item>
+              <Menu.Item key="favorites" icon={<StarOutlined />}>
+                Favorites
               </Menu.Item>
               <Menu.Item key="contact" icon={<MessageOutlined />}>
                 Contact Us
