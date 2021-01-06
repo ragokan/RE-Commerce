@@ -80,7 +80,7 @@ const DetailedProductView = ({ user, AddProductAction, RemoveProductAction }) =>
             </Row>
           </>
         )}
-        <ProductReviews product={product} />
+        <ProductReviews product={product} user={user} />
       </Card>
     </div>
   );

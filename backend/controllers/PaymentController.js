@@ -50,19 +50,18 @@ export const CreateNewPayment = Async(async (req, res, next) => {
         await product.save();
 
         // User Part
-        const index = user.purchasedProducts.findIndex((item) => item === product._id);
+        const index = await user.purchasedProducts.findIndex((item) => item === product._id);
         if (index === -1)
           await User.updateOne(
-            user,
+            { _id: user._id },
             {
-              purchasedProducts: [product._id, ...user.purchasedProducts],
+              $push: { purchasedProducts: product._id },
             },
             { new: true }
           );
       });
 
-      user.basket = [];
-      await user.save();
+      user = await User.findByIdAndUpdate(user._id, { basket: [] }, { new: true });
 
       await Order.populate(newOrder, {
         path: "products",
