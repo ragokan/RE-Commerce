@@ -9,7 +9,13 @@ const HomePage = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentItems, setCurrentItems] = useState([]);
   useEffect(() => {
-    setCurrentItems(paginate(products, 12, currentPage));
+    setCurrentItems(
+      paginate(
+        products.filter((product) => product.stockCount > 0),
+        12,
+        currentPage
+      )
+    );
   }, [currentPage, products]);
 
   return (
