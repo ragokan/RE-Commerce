@@ -43,7 +43,7 @@ export const AddProductToBasket = Async(async (req, res, next) => {
 
   // We will check stock count in details to add product to basket.
   const stockCountValidation = await Product.findById(product);
-  if (stockCountValidation.stockAmount < 1)
+  if (stockCountValidation.stockCount < 1)
     return next(new ErrorObject("The product doesn't have any stock to add.", 400));
 
   if (user.basket.length > 0) {
@@ -51,8 +51,8 @@ export const AddProductToBasket = Async(async (req, res, next) => {
 
     if (itemIndex === -1) user.basket.push({ product, quantity: 1 });
     else {
-      if (user.basket[itemIndex].quantity >= stockCountValidation.stockAmount)
-        return next(new ErrorObject("The product doesn't have any stock to add.", 400));
+      if (user.basket[itemIndex].quantity >= stockCountValidation.stockCount)
+        return next(new ErrorObject("The product doesn't have any more stock to add.", 400));
       user.basket[itemIndex].quantity++;
     }
   } else await user.basket.push({ product, quantity: 1 });
