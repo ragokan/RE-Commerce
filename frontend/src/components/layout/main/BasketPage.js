@@ -6,8 +6,9 @@ import { Button, Divider, List, Space } from "antd";
 import BasketProductObject from "../../products/BasketProductObject";
 import commaFunction from "../../../utils/commaFunction";
 import { useHistory } from "react-router-dom";
+import { ClearBasketAction } from "../../../actions/ProductActions";
 
-const BasketPage = ({ products }) => {
+const BasketPage = ({ products, ClearBasketAction }) => {
   const history = useHistory();
   return (
     <>
@@ -32,7 +33,9 @@ const BasketPage = ({ products }) => {
         </div>
         <div className="divider" />
         <Space className="floatRightBasket">
-          <Button type="ghost">{lokaly("clear")}</Button>
+          <Button type="ghost" onClick={() => ClearBasketAction()}>
+            {lokaly("clear")}
+          </Button>
           <Button
             type="primary"
             onClick={() => history.push("/checkout")}
@@ -48,6 +51,6 @@ const BasketPage = ({ products }) => {
 
 const mapStateToProps = (state) => ({ products: state.user.user.basket });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { ClearBasketAction };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BasketPage);

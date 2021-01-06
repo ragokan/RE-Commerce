@@ -16,6 +16,9 @@ export default function reducer(state = initialState, { type, payload }) {
     case "UPDATE_BASKET":
       return { ...state, user: { ...state.user, basket: payload } };
 
+    case "CLEAR_BASKET":
+      return { ...state, user: { ...state.user, basket: [] } };
+
     default:
       return state;
   }

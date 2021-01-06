@@ -29,3 +29,10 @@ export const RemoveProductAction = (product) => async (dispatch) => {
     payload: data,
   });
 };
+
+export const ClearBasketAction = () => async (dispatch) => {
+  await api.post(routes.clearBasket);
+  dispatch({
+    type: "CLEAR_BASKET",
+  });
+};
