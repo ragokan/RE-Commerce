@@ -95,3 +95,25 @@ export const ClearBasket = Async(async (req, res, next) => {
 
   res.status(200).json(user);
 });
+
+// Post /product/:id/review
+export const AddProductReview = Async(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+
+  const userCheck = req.user.purchasedProducts.findIndex((item) => item === product._id);
+  if (userCheck === -1)
+    return next(new ErrorObject("To add a review to product, you have to buy it first!", 400));
+
+  const productCheck = product.reviews.findIndex((item) => item.user === req.user._id);
+  if (productCheck !== -1) return next(new ErrorObject("You already reviewed this product!", 400));
+
+  const review = {
+    user: req.user._id,
+    rating: req.body.rating,
+    text: req.body.text,
+  };
+  product.reviews.push(review);
+  await product.save();
+
+  res.status(200).json(product);
+});
