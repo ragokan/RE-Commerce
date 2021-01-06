@@ -46,7 +46,7 @@ export const CreateNewPayment = Async(async (req, res, next) => {
         // Product Part
         let product = await Product.findById(item.product._id);
         product.totalSellAmount = product.totalSellAmount + 1;
-        product.stockCount = product.stockCount - 1;
+        product.stockCount = product.stockCount - item.quantity;
         await product.save();
 
         // User Part
