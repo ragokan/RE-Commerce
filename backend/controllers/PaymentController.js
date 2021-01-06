@@ -68,7 +68,7 @@ export const CreateNewPayment = Async(async (req, res, next) => {
         populate: { path: "product" },
       });
 
-      res.status(200).json({ success: true, newOrder, user });
+      res.status(200).json({ success: true, newOrder });
     } else return paymentError("Payment is not accepted.");
   } catch (error) {
     return paymentError(error);
