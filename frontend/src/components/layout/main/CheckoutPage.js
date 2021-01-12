@@ -51,6 +51,9 @@ const CheckoutPage = ({ CreateNewPayment, loading, products }) => {
           >
             <CheckoutValues loading={loading} products={products}>
               <CardElement options={{ hidePostalCode: true }} />
+              <div className="grey-text">
+                Card Number: 4242 4242 4242 4242 - MM/YY: 4/24 - CVC: 242
+              </div>
             </CheckoutValues>
           </Form>
         </Card>
