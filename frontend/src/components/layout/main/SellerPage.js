@@ -4,6 +4,7 @@ import lokaly from "lokaly";
 import { connect } from "react-redux";
 import SellerProducts from "../../seller/SellerProducts";
 import AddProduct from "../../seller/AddProduct";
+import GainingsPage from "../../seller/GainingsPage";
 const { TabPane } = Tabs;
 
 const SellerPage = ({ user, products }) => {
@@ -26,7 +27,7 @@ const SellerPage = ({ user, products }) => {
           <AddProduct setCurrentPage={setCurrentPage} />
         </TabPane>
         <TabPane tab={lokaly("gain")} key="gain">
-          Gain
+          <GainingsPage />
         </TabPane>
       </Tabs>
     </div>

@@ -12,7 +12,7 @@ export const GetOrders = Async(async (req, res, next) => {
 
 // Get All Orders
 export const GetAllOrders = Async(async (req, res, next) => {
-  const orders = await Order.find().populate("buyer", ["email", "password", "fullname"]);
+  const orders = await Order.find().populate("buyer", ["email", "fullname"]);
 
   await Order.populate(orders, {
     path: "products",

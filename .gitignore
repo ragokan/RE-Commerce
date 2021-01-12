@@ -1,3 +1,4 @@
 /node_modules
 .env
 frontend/firebase/Config.js
+frontend/.eslintcache

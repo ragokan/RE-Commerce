@@ -7,7 +7,7 @@ const Purchases = ({ orders }) => {
   return (
     <>
       <Table
-        columns={columns}
+        columns={columns(false)}
         dataSource={orders.slice(0).reverse()}
         bordered
         size="large"

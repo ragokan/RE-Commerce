@@ -22,3 +22,4 @@ export const paymentRoute = "/payment/create";
 
 // Order Part
 export const orderRoute = "/order";
+export const allOrdersRoute = "/order/all";

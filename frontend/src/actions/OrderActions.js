@@ -8,3 +8,8 @@ export const FetchOrders = () => async (dispatch) => {
     payload: data,
   });
 };
+
+export const FetchAllOrders = async () => {
+  const { data } = await api.get(routes.allOrdersRoute);
+  return data;
+};

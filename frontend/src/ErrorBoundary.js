@@ -1,4 +1,5 @@
 import React from "react";
+import { Result, Button } from "antd";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -12,7 +13,19 @@ class ErrorBoundary extends React.Component {
     console.log("Error boundary did catch an error, details: ", error, errorInfo);
   }
   render() {
-    if (this.state.hasError) return <h1>Something went wrong.</h1>;
+    if (this.state.hasError)
+      return (
+        <Result
+          status="500"
+          title="500"
+          subTitle="Sorry, something went wrong."
+          extra={
+            <Button type="primary" href="/">
+              Back Home
+            </Button>
+          }
+        />
+      );
     return this.props.children;
   }
 }
