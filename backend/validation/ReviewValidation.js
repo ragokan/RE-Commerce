@@ -2,7 +2,7 @@ import Joi from "joi";
 
 const ReviewValidation = (data) => {
   const schema = Joi.object({
-    text: Joi.string().min(2).required().messages({
+    text: Joi.string().required().messages({
       "any.required": "Please enter details for your review!",
       "string.min": "Please enter details for your review!",
     }),

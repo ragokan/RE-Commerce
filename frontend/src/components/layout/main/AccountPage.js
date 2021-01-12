@@ -13,7 +13,7 @@ import AccountDetails from "../../account/AccountDetails";
 import ContactUs from "../../account/ContactUs";
 import Purchases from "../../account/Purchases";
 import lokaly from "lokaly";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
 const AccountPage = (props) => {
   const [currentRoute, setCurrentRoute] = useState("account");

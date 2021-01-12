@@ -1,6 +1,6 @@
 import React from "react";
 import { Result, Button } from "antd";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 
 const CheckoutSuccess = () => {
   const { id } = useParams();
