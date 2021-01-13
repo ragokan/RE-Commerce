@@ -12,7 +12,7 @@
     "frontend": "npm run start --prefix frontend",
     "build-frontend": "npm run build --prefix frontend",
     "both": "concurrently \"yarn dev\" \"yarn frontend\"",
-    "prepare": "yarn build-frontend && NODE_ENV=production yarn start"
+    "rago-before-publish": "yarn build-frontend && NODE_ENV=production yarn start"
   },
   "main": "index.js",
   "repository": "https://github.com/ragokan/recommerce",
