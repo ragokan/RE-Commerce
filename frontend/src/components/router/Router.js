@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import RouterContent from "./RouterContent";
-import Routes from "./Routes";
+import Routes from "./Routes.js";
 import LoadingComponent from "../utils/LoadingComponent";
 import { connect } from "react-redux";
 
