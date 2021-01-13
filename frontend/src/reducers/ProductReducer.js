@@ -13,6 +13,7 @@ export default function reducer(state = initialState, { type, payload }) {
     case "SELLER_REMOVE_PRODUCT":
       return { ...state, products: state.products.filter((item) => item._id !== payload) };
 
+    case "UPDATE_PRODUCT_FAVORITES":
     case "SELLER_UPDATE_PRODUCT":
     case "ADD_REVIEW":
       return {

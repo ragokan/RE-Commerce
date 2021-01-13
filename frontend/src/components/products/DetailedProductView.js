@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { GetOneProductAction } from "../../actions/ProductActions";
+import { GetOneProductAction, FavoriteProductAction } from "../../actions/ProductActions";
 import { Card, Row, Col, Divider, Button } from "antd";
 import commaFunction from "../../utils/commaFunction";
 import { AddProductAction, RemoveProductAction } from "../../actions/ProductActions";
@@ -9,12 +9,18 @@ import { ShoppingCartOutlined, MinusOutlined, PlusOutlined } from "@ant-design/i
 import BasketIcons from "./BasketIcons";
 import ProductReviews from "./ProductReviews";
 
-const DetailedProductView = ({ user, AddProductAction, RemoveProductAction }) => {
+const DetailedProductView = ({
+  user,
+  AddProductAction,
+  RemoveProductAction,
+  FavoriteProductAction,
+}) => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [basket, setBasket] = useState([]);
   const [itemExists, setItemExists] = useState(false);
   const [itemCount, setItemCount] = useState(0);
+  const [haveFavorite, setHaveFavorite] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => await GetOneProductAction(id);
@@ -34,6 +40,18 @@ const DetailedProductView = ({ user, AddProductAction, RemoveProductAction }) =>
     setItemExists(index === -1 ? false : true);
     setItemCount(index === -1 ? 0 : basket[index].quantity);
   }, [basket, product]);
+
+  useEffect(() => {
+    if (!product || !product.favorites || !user) return;
+    let index = product.favorites.findIndex((item) => item === user._id);
+    if (index !== -1) setHaveFavorite(true);
+    else setHaveFavorite(false);
+  }, [product, user]);
+
+  const favoriteProduct = async () => {
+    const data = await FavoriteProductAction(product._id);
+    setProduct({ ...product, favorites: data.favorites });
+  };
 
   let itemDoesntExistsOnBasket = () =>
     user && [
@@ -73,7 +91,9 @@ const DetailedProductView = ({ user, AddProductAction, RemoveProductAction }) =>
                     <BasketIcons item={{ product }} />
                   </div>
                   <div className="float-right">
-                    <Button type="dashed">Add To Favorites</Button>
+                    <Button type="dashed" onClick={favoriteProduct}>
+                      {haveFavorite ? "Remove From Favorites" : "Add To Favorites"}
+                    </Button>
                   </div>
                 </Card>
               </Col>
@@ -90,6 +110,6 @@ const mapStateToProps = (state) => ({
   user: state.user.user,
 });
 
-const mapDispatchToProps = { AddProductAction, RemoveProductAction };
+const mapDispatchToProps = { AddProductAction, RemoveProductAction, FavoriteProductAction };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailedProductView);

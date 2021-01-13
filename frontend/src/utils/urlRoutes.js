@@ -11,6 +11,7 @@ export const addProduct = "/product/add";
 export const removeProduct = "/product/remove";
 export const clearBasket = "/product/clear";
 export const addProductReview = (id) => `/product/${id}/review`;
+export const favoriteProduct = "/product/favorite";
 
 // Seller Part
 export const sellerAddProduct = "/seller/products";

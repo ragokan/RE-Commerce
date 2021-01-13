@@ -45,3 +45,13 @@ export const AddReviewToProductAction = (id, review) => async (dispatch) => {
   });
   return data;
 };
+
+export const FavoriteProductAction = (product) => async (dispatch) => {
+  const { data } = await api.post(routes.favoriteProduct, { product });
+  dispatch({
+    type: "UPDATE_PRODUCT_FAVORITES",
+    payload: data,
+  });
+
+  return data;
+};
