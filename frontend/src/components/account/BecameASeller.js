@@ -5,16 +5,27 @@ import { AddErrorAction } from "../../actions/ErrorActions";
 
 const { TextArea } = Input;
 
-const ContactUs = ({ AddErrorAction }) => {
+const BecameASeller = ({ AddErrorAction }) => {
   const onFinish = (values) => {
-    AddErrorAction("You successfully sent us a message!", "success");
+    AddErrorAction(
+      "You successfully applied to be a seller, if you have any other reasons, you can sent us another application again!",
+      "success"
+    );
   };
   return (
     <>
       <Form name="basic" onFinish={onFinish} className="productForm">
         <Form.Item
-          label="Message"
-          name="messaage"
+          label="Company Name"
+          name="companyname"
+          rules={[{ required: true, message: "Please enter a valid name!" }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Company Details"
+          name="companydetails"
           rules={[{ required: true, message: "Please enter a message!" }]}
         >
           <TextArea />
@@ -34,4 +45,4 @@ const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = { AddErrorAction };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactUs);
+export default connect(mapStateToProps, mapDispatchToProps)(BecameASeller);
