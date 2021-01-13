@@ -21,7 +21,6 @@ app.use(NotFound);
 app.use(ErrorHandler);
 
 // Production
-// Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   var __dirname = path.resolve();
   app.use(express.static("frontend/build"));
