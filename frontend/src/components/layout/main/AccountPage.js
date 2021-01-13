@@ -14,6 +14,7 @@ import ContactUs from "../../account/ContactUs";
 import Purchases from "../../account/Purchases";
 import lokaly from "lokaly";
 import { useLocation } from "react-router-dom";
+import Favorites from "../../account/Favorites";
 
 const AccountPage = (props) => {
   const [currentRoute, setCurrentRoute] = useState("account");
@@ -64,6 +65,7 @@ const AccountPage = (props) => {
               <Card title={lokaly(currentRoute)} style={{ textTransform: "capitalize" }}>
                 {currentRoute === "account" && <AccountDetails />}
                 {currentRoute === "purchases" && <Purchases />}
+                {currentRoute === "favorites" && <Favorites />}
                 {currentRoute === "contact" && <ContactUs />}
               </Card>
             </Content>
