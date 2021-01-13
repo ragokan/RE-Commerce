@@ -2,3 +2,5 @@
 .env
 frontend/firebase/Config.js
 frontend/.eslintcache
+Config.js
+Config

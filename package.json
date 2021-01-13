@@ -10,9 +10,7 @@
     "dev": "nodemon index --prefix backend",
     "heroku-postbuild": "cd frontend && yarn install && yarn build",
     "frontend": "npm run start --prefix frontend",
-    "build-frontend": "npm run build --prefix frontend",
-    "both": "concurrently \"yarn dev\" \"yarn frontend\"",
-    "rago-before-publish": "yarn build-frontend && NODE_ENV=production yarn start"
+    "both": "concurrently \"yarn dev\" \"yarn frontend\""
   },
   "main": "index.js",
   "repository": "https://github.com/ragokan/recommerce",
