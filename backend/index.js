@@ -16,10 +16,6 @@ app.use(formData.parse());
 import routing from "./routing.js";
 routing(app);
 
-// Middleware
-app.use(NotFound);
-app.use(ErrorHandler);
-
 // Production
 if (process.env.NODE_ENV === "production") {
   var __dirname = path.resolve();
@@ -29,6 +25,10 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 }
+
+// Middleware
+app.use(NotFound);
+app.use(ErrorHandler);
 
 // Server
 const PORT = process.env.PORT || 8000;
