@@ -2,6 +2,9 @@
   "name": "recommerce",
   "version": "1.0.0",
   "description": "An e-commerce app that created by ragokan.",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node backend/index --prefix backend",
     "dev": "nodemon index --prefix backend",
