@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import formData from "express-form-data";
 // Dot Env + Database
 import "./utils/Environment.js";
@@ -18,6 +19,17 @@ routing(app);
 // Middleware
 app.use(NotFound);
 app.use(ErrorHandler);
+
+// Production
+// Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  var __dirname = path.resolve();
+  app.use(express.static("frontend/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+}
 
 // Server
 const PORT = process.env.PORT || 8000;
