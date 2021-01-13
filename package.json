@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node backend/index --prefix backend",
     "dev": "nodemon index --prefix backend",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
+    "heroku-postbuild": "cd frontend && yarn install && yarn build",
     "frontend": "npm run start --prefix frontend",
     "both": "concurrently \"yarn dev\" \"yarn frontend\""
   },
