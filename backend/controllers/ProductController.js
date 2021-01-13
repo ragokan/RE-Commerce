@@ -4,6 +4,7 @@ import Async from "../middleware/Async.js";
 import ErrorObject from "../utils/ErrorObject.js";
 import BasketValidation from "../validation/BasketValidation.js";
 import ReviewValidation from "../validation/ReviewValidation.js";
+import FavoriteValidation from "../validation/FavoriteValidation.js";
 
 // Get /product/id
 export const GetAllProducts = Async(async (req, res, next) => {
@@ -127,4 +128,26 @@ export const AddProductReview = Async(async (req, res, next) => {
   await product.save();
 
   res.status(200).json(product);
+});
+
+// Post /product/favorite
+export const FavoriteProduct = Async(async (req, res, next) => {
+  const { error } = BasketValidation(req.body);
+  if (error)
+    return next(new ErrorObject("Please provide a correct product id to add your favorites!", 400));
+  let { product } = req.body;
+
+  const updatedProduct = await Product.findById(product);
+  if (!updatedProduct) return next(new ErrorObject("No product found with that id!", 404));
+
+  const userIndex = updatedProduct.favorites.findIndex(
+    (item) => String(item) === String(req.user._id)
+  );
+
+  if (userIndex === -1) updatedProduct.favorites.push(req.user._id);
+  else updatedProduct.favorites.splice(userIndex, 1);
+
+  await updatedProduct.save();
+
+  res.status(200).json(updatedProduct);
 });

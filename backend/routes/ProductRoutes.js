@@ -7,6 +7,7 @@ import {
   GetUserBasket,
   ClearBasket,
   AddProductReview,
+  FavoriteProduct,
 } from "../controllers/ProductController.js";
 import { LoginRequired } from "../middleware/UserAuth.js";
 
@@ -25,5 +26,7 @@ router.route("/remove").post(LoginRequired, RemoveProductToBasket);
 router.route("/clear").post(LoginRequired, ClearBasket);
 
 router.route("/:id/review").post(LoginRequired, AddProductReview);
+
+router.route("/favorite").post(LoginRequired, FavoriteProduct);
 
 export default router;
