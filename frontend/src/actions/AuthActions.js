@@ -23,19 +23,19 @@ export const GetUserInfoAction = (token = localStorage.getItem("authToken")) => 
 
 export const LoginAction = (account) => async (dispatch) => {
   const { data } = await api.post(routes.loginRoute, account);
-  dispatch(GetUserInfoAction(data));
+  dispatch(GetUserInfoAction(data.token));
   dispatch({
     type: "ADD_TOKEN",
-    payload: data,
+    payload: data.token,
   });
 };
 
 export const RegisterAction = (account) => async (dispatch) => {
   const { data } = await api.post(routes.registerRoute, account);
-  dispatch(GetUserInfoAction(data));
+  dispatch(GetUserInfoAction(data.token));
   dispatch({
     type: "ADD_TOKEN",
-    payload: data,
+    payload: data.token,
   });
 };
 

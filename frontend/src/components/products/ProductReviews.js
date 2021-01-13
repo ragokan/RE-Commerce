@@ -30,11 +30,11 @@ const ProductReviews = ({ user, product, AddReviewToProductAction, setProduct })
   useEffect(
     () => {
       const checker = async () => {
-        if (!user || !product || !!product.reviews || counter > 0) return;
+        if (!user || !product || !product.reviews || counter > 0) return;
 
         setCounter((prevCount) => prevCount + 1);
 
-        const productCheck = await product?.reviews?.findIndex(
+        const productCheck = await product.reviews.findIndex(
           (item) => String(item.user._id) === String(user._id)
         );
 

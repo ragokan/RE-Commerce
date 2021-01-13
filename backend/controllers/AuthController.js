@@ -17,7 +17,8 @@ export const Register = Async(async (req, res, next) => {
   const user = new User({ email, password, fullname });
   await user.save();
   const token = user.getToken();
-  res.status(201).json(token);
+  req.headers["Authorization"] = token;
+  res.status(201).json({ token });
 });
 
 // Post /auth/login
@@ -34,7 +35,8 @@ export const Login = Async(async (req, res, next) => {
   if (!passCheck) return next(new ErrorObject("Invalid Credentials!", 400, 101));
 
   const token = userCheck.getToken();
-  res.status(200).json(token);
+  req.headers["Authorization"] = token;
+  res.status(200).json({ token });
 });
 
 // Post /auth/logout
